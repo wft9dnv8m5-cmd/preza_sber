@@ -7,7 +7,7 @@
 <title>Купер: от СберМаркета к экосистемному игроку</title>
 <style>
 /* 
-  Цветовая палитра Сбера:
+  Цветовая палитра Сбера и токены интерфейса:
   --sber-green - фирменный зеленый
   --sber-grad - градиент Сбера
   --glass - светлый глассморфизм
@@ -22,10 +22,10 @@
     --ink: #1c211e;
     --mut: #68756e;
     --bg: #f4f7f5;
-    --w: 1120px;
+    --w: 1140px;
     
-    --glass-bg: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.68);
+    --glass-border: rgba(255, 255, 255, 0.5);
     --glass-shadow: 0 8px 32px 0 rgba(33, 160, 56, 0.08);
     
     --glass-dark-bg: rgba(255, 255, 255, 0.08);
@@ -74,11 +74,11 @@ body::after {
 
 .bar-top { position: fixed; top: 0; left: 0; height: 4px; width: 0; z-index: 50; background: linear-gradient(90deg, var(--sber-green), var(--sber-lime), var(--sber-yellow)); transition: width 0.1s ease; }
 
-section { position: relative; padding: clamp(80px, 12vw, 140px) 20px; overflow: hidden; }
+section { position: relative; padding: clamp(80px, 11vw, 130px) 20px; overflow: hidden; }
 .wrap { width: min(100%, var(--w)); margin: 0 auto; position: relative; z-index: 2; }
 
 /* Глассморфизм для секций */
-.glass-section { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.glass-section { background: rgba(255, 255, 255, 0.38); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 
 .dark { 
     background: linear-gradient(145deg, #0b2214, #06120a); 
@@ -93,10 +93,10 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) 20px; overflow: 
 }
 
 h1 { font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: 1.05; font-weight: 800; letter-spacing: -0.03em; max-width: 900px; margin-bottom: 16px; }
-h2 { font-size: clamp(2rem, 4.8vw, 3.8rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.025em; max-width: 820px; }
+h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.025em; max-width: 860px; }
 .dark h2, .dark h1 { color: #fff; }
 
-.sub { margin-top: 16px; font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--mut); max-width: 720px; }
+.sub { margin-top: 16px; font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--mut); max-width: 760px; }
 .dark .sub { color: #a4c9b2; }
 
 .tag { 
@@ -105,8 +105,8 @@ h2 { font-size: clamp(2rem, 4.8vw, 3.8rem); line-height: 1.1; font-weight: 800; 
     border: 1px solid var(--glass-dark-border); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em;
 }
 
-.head { margin-bottom: clamp(40px, 6vw, 64px); }
-.sec-n { display: inline-block; margin-bottom: 16px; font-weight: 800; color: var(--sber-green); font-size: 1.1rem; }
+.head { margin-bottom: clamp(36px, 5vw, 56px); }
+.sec-n { display: inline-block; margin-bottom: 14px; font-weight: 800; color: var(--sber-green); font-size: 1.1rem; }
 .dark .sec-n { color: var(--sber-lime); }
 
 /* Hero */
@@ -121,286 +121,611 @@ h2 { font-size: clamp(2rem, 4.8vw, 3.8rem); line-height: 1.1; font-weight: 800; 
 }
 @keyframes pulse { 0% { transform: translateY(-50%) scale(1); opacity: 0.5; } 100% { transform: translateY(-50%) scale(1.1); opacity: 0.8; } }
 
-/* Карточки с Glassmorphism */
+/* Карточки базовые */
 .card {
-    position: relative; padding: 32px; border-radius: 28px;
+    position: relative; padding: 30px; border-radius: 26px;
     background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
     overflow: hidden; z-index: 1;
 }
-.dark .card { background: var(--glass-dark-bg); border-color: var(--glass-dark-border); color: #fff; box-shadow: var(--glass-dark-shadow); }
-.card::before {
-    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px;
-    background: linear-gradient(90deg, var(--sber-green), var(--sber-lime)); opacity: 0; transition: opacity 0.3s;
-}
-.card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 40px rgba(33, 160, 56, 0.15); }
-.card:hover::before { opacity: 1; }
-.dark .card:hover { box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); }
-
-.card h3 { font-size: 1.4rem; line-height: 1.25; margin: 12px 0 8px; font-weight: 700; color: var(--sber-grad-start); }
-.dark .card h3 { color: var(--sber-lime); }
-.card p { color: var(--mut); font-size: 1.05rem; }
-.dark .card p { color: #d0e4d7; }
-
-/* Акцентная карточка (Сбер-стиль) */
-.card.hl { background: linear-gradient(135deg, var(--sber-green), var(--sber-grad-end)); border: none; color: #fff; box-shadow: 0 12px 32px rgba(33, 160, 56, 0.3); }
-.card.hl::before { background: var(--sber-lime); opacity: 1; height: 3px; }
-.card.hl h3 { color: var(--sber-lime); }
-.card.hl p { color: #e1f2e5; }
-
-.ico {
-    display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: 20px; border-radius: 18px;
-    background: linear-gradient(135deg, var(--sber-lime), var(--sber-green)); color: #fff; font-weight: 800; font-size: 1.3rem;
-    box-shadow: 0 8px 20px rgba(33, 160, 56, 0.4);
-}
-.hl .ico { background: rgba(255,255,255,0.25); box-shadow: none; backdrop-filter: blur(5px); }
-.dark .ico { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); box-shadow: none; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(33, 160, 56, 0.14); }
 
 .grid { display: grid; gap: clamp(16px, 2vw, 24px); }
 .g4 { grid-template-columns: repeat(4, 1fr); }
 .g3 { grid-template-columns: repeat(3, 1fr); }
 
-/* Таймлайн */
-.tl .card { padding-top: 40px; }
-.tl .y {
-    display: block; font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1;
-    background: linear-gradient(135deg, var(--sber-green), var(--sber-grad-end));
-    -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 12px;
+/* --- Слайд 02: Интерактивные Flip-карточки --- */
+.timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 2vw, 24px);
+    perspective: 1200px;
 }
-.dark .tl .y { background: linear-gradient(135deg, var(--sber-lime), #fff); -webkit-background-clip: text; }
-
-/* Flow */
-.flow { display: flex; align-items: stretch; gap: 20px; }
-.flow .card { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 180px; }
-.flow .arrow { align-self: center; font-size: 3rem; color: var(--sber-green); line-height: 1; opacity: 0.6; }
-.flow .old { background: rgba(200, 210, 205, 0.3); border-color: rgba(200, 210, 205, 0.5); box-shadow: none; }
-.flow .old h3 { color: var(--mut); }
-
-/* Bento Grid */
-.bento { grid-template-columns: repeat(6, 1fr); }
-.bento .card { grid-column: span 2; }
-.bento .w { grid-column: span 3; }
-.bento .big { grid-column: span 4; }
-
-/* Chart */
-.chart-card { padding: clamp(32px, 4vw, 56px); }
-.chart {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 3vw, 40px);
-    align-items: end; height: clamp(260px, 40vw, 400px); border-bottom: 2px solid rgba(33, 160, 56, 0.2);
+.flip-card {
+    height: 330px;
+    background: transparent;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
 }
-.col { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; position: relative; }
-.col i {
-    display: block; width: 100%; height: 0; border-radius: 12px 12px 0 0;
-    background: linear-gradient(180deg, var(--sber-lime), var(--sber-green) 60%);
-    box-shadow: 0 10px 30px rgba(33, 160, 56, 0.25); transition: height 1.5s cubic-bezier(0.2, 0.8, 0.2, 1.1);
-}
-.active-chart .col i { height: var(--h); }
-.col b { font-size: clamp(1.2rem, 3vw, 2.4rem); letter-spacing: -0.03em; margin-bottom: 8px; font-weight: 800; color: var(--ink); }
-.dark .col b { color: #fff; }
-.col em {
-    font-style: normal; font-weight: 700; color: var(--sber-green); font-size: 0.95rem; margin-bottom: 8px;
-    background: rgba(33, 160, 56, 0.1); padding: 4px 12px; border-radius: 99px;
-}
-
-.years { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 3vw, 40px); margin-top: 16px; text-align: center; font-weight: 700; color: var(--mut); }
-.badge { display: inline-block; margin-top: 32px; padding: 14px 28px; border-radius: 99px; background: var(--sber-green); color: #fff; font-weight: 700; box-shadow: 0 8px 24px rgba(33, 160, 56, 0.3); }
-.badge span { color: var(--sber-lime); font-weight: 800; }
-
-/* Chips */
-.chips { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
-.chip {
-    padding: 16px 32px; border-radius: 99px;
-    background: var(--glass-dark-bg); border: 1px solid var(--glass-dark-border);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    font-size: clamp(1rem, 2.2vw, 1.3rem); font-weight: 600; transition: all 0.3s ease;
-}
-.chip:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
-.chip.me { background: var(--sber-green); border: none; color: #fff; font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 800; box-shadow: 0 12px 30px rgba(33, 160, 56, 0.4); }
-.chip.me:hover { transform: translateY(-4px) scale(1.05); }
-
-/* Стили для секции 08: SWOT и PEST */
-.analysis-block {
-    margin-bottom: 48px;
-}
-.analysis-title {
-    font-size: 1.15rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--mut);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.analysis-title::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: rgba(33, 160, 56, 0.2);
-}
-
-.swot-card {
+.flip-inner {
     position: relative;
-    padding: 28px 24px;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-style: preserve-3d;
+    border-radius: 26px;
+}
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-front, .flip-back {
+    position: absolute; inset: 0; width: 100%; height: 100%; padding: 26px 22px;
+    border-radius: 26px; -webkit-backface-visibility: hidden; backface-visibility: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.05);
+}
+.flip-front {
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+}
+.flip-card:hover .flip-front {
+    box-shadow: 0 16px 36px rgba(33, 160, 56, 0.16); transform: translateY(-4px);
+}
+.flip-front .badge-phase {
+    align-self: flex-start; padding: 4px 12px; border-radius: 99px; font-size: 0.76rem;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    background: rgba(33, 160, 56, 0.1); color: var(--sber-green);
+}
+.flip-front .year-num {
+    font-size: clamp(2.8rem, 3.8vw, 3.6rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1;
+    background: linear-gradient(135deg, var(--sber-green), var(--sber-grad-end));
+    -webkit-background-clip: text; background-clip: text; color: transparent; margin: 10px 0 6px;
+}
+.flip-front .card-title { font-size: 1.1rem; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.flip-front .tap-hint {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem;
+    font-weight: 600; color: var(--mut); margin-top: 10px;
+}
+.flip-front .tap-hint svg { width: 14px; height: 14px; fill: currentColor; }
+.flip-back {
+    transform: rotateY(180deg); background: linear-gradient(145deg, #ffffff, #f1f8f3);
+    border: 1px solid rgba(33, 160, 56, 0.25); color: var(--ink);
+}
+.flip-back-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px dashed rgba(33, 160, 56, 0.25); }
+.flip-back-year { font-weight: 800; font-size: 1.1rem; color: var(--sber-green); }
+.flip-back-close { font-size: 0.78rem; color: var(--mut); font-weight: 600; }
+.flip-back-text { font-size: 0.9rem; line-height: 1.45; color: #374151; margin: auto 0; }
+.flip-back-stat { font-size: 0.78rem; font-weight: 700; padding: 6px 10px; border-radius: 10px; background: rgba(33, 160, 56, 0.08); color: var(--sber-green); }
+
+.flip-card.hl-card .flip-front {
+    background: linear-gradient(145deg, #126322, #073812); border: 1px solid rgba(182, 224, 74, 0.3); color: #fff;
+}
+.flip-card.hl-card .flip-front .badge-phase { background: rgba(182, 224, 74, 0.2); color: var(--sber-lime); }
+.flip-card.hl-card .flip-front .year-num { background: linear-gradient(135deg, var(--sber-lime), #ffffff); -webkit-background-clip: text; }
+.flip-card.hl-card .flip-front .card-title { color: #ffffff; }
+.flip-card.hl-card .flip-front .tap-hint { color: #b9dfc4; }
+.flip-card.hl-card .flip-back { background: linear-gradient(145deg, #0d3817, #06200c); border: 1px solid rgba(182, 224, 74, 0.4); color: #fff; }
+.flip-card.hl-card .flip-back-year, .flip-card.hl-card .flip-back-stat { color: var(--sber-lime); }
+.flip-card.hl-card .flip-back-text { color: #e5f5ea; }
+.flip-card.hl-card .flip-back-stat { background: rgba(182, 224, 74, 0.15); }
+
+/* --- Слайд 03: Юрисдикция --- */
+.flow-jur { display: flex; align-items: center; gap: 24px; }
+.card-jur {
+    position: relative; flex: 1; min-height: 220px; padding: 34px 34px 34px 116px;
+    border-radius: 28px; display: flex; flex-direction: column; justify-content: center;
+    overflow: hidden; transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.card-jur:hover { transform: translateY(-6px); }
+.jur-fig {
+    position: absolute; left: 26px; top: 50%; transform: translateY(-50%);
+    width: 66px; height: 66px; border-radius: 20px; display: grid; place-items: center; z-index: 2;
+}
+.jur-fig svg { width: 40px; height: 40px; transition: transform 0.4s ease; }
+.card-jur:hover .jur-fig svg { transform: scale(1.1); }
+.jur-watermark {
+    position: absolute; right: -20px; bottom: -25px; width: 170px; height: 170px;
+    opacity: 0.08; pointer-events: none; z-index: 0; transition: transform 0.5s ease;
+}
+.card-jur:hover .jur-watermark { transform: scale(1.1) rotate(-5deg); opacity: 0.13; }
+.card-cyprus { background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(220, 228, 224, 0.8); }
+.card-cyprus .jur-fig { background: linear-gradient(135deg, #e97a2b, #c55306); box-shadow: 0 8px 20px rgba(233, 122, 43, 0.3); }
+.card-cyprus .jur-fig svg { fill: #ffffff; }
+.card-cyprus .jur-watermark svg { fill: #c55306; }
+.card-cyprus h3 { color: #92400e; font-size: 1.45rem; font-weight: 800; margin-bottom: 6px; position: relative; z-index: 1; }
+.card-cyprus p { color: var(--mut); position: relative; z-index: 1; }
+.card-ru { background: linear-gradient(135deg, #138328, #094f18); border: 1px solid rgba(182, 224, 74, 0.3); color: #fff; box-shadow: 0 16px 36px rgba(19, 131, 40, 0.28); }
+.card-ru .jur-fig { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+.card-ru .jur-fig svg { fill: var(--sber-lime); }
+.card-ru .jur-watermark svg { fill: #ffffff; }
+.card-ru h3 { color: #ffffff; font-size: 1.45rem; font-weight: 800; margin-bottom: 6px; position: relative; z-index: 1; }
+.card-ru p { color: #d8f3dc; position: relative; z-index: 1; }
+.flow-jur .arrow {
+    display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%;
+    background: var(--glass-bg); border: 1px solid var(--glass-border); font-size: 1.6rem;
+    color: var(--sber-green); box-shadow: var(--glass-shadow); flex-shrink: 0;
+}
+
+/* --- Слайд 04: Платформа внутри экосистемы (Обновленный) --- */
+.eco-banner {
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    padding: 24px 32px; border-radius: 22px; background: rgba(33, 160, 56, 0.08);
+    border: 1px solid rgba(33, 160, 56, 0.25); margin-bottom: 30px;
+}
+.eco-banner-text b { color: var(--sber-grad-start); font-size: 1.15rem; display: block; margin-bottom: 2px; }
+.eco-banner-text span { color: var(--mut); font-size: 0.95rem; }
+.eco-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+.eco-pill {
+    padding: 8px 16px; border-radius: 99px; background: #fff; font-weight: 700;
+    font-size: 0.85rem; color: var(--sber-grad-start); box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    display: inline-flex; align-items: center; gap: 6px;
+}
+.eco-pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--sber-green); }
+
+.pillar-card {
+    position: relative; padding: 30px 26px; border-radius: 26px;
+    background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+.pillar-card:hover {
+    transform: translateY(-8px); box-shadow: 0 16px 38px rgba(33, 160, 56, 0.16);
+    border-color: rgba(33, 160, 56, 0.3);
+}
+.pillar-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.pillar-icon {
+    width: 58px; height: 58px; border-radius: 18px; display: grid; place-items: center;
+    background: linear-gradient(135deg, rgba(182, 224, 74, 0.25), rgba(33, 160, 56, 0.15));
+    border: 1px solid rgba(33, 160, 56, 0.2);
+}
+.pillar-icon svg { width: 30px; height: 30px; fill: var(--sber-grad-start); }
+.pillar-badge {
+    font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 5px 12px; border-radius: 99px; background: rgba(33, 160, 56, 0.1); color: var(--sber-green);
+}
+.pillar-card h3 { font-size: 1.25rem; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+.pillar-card p { font-size: 0.94rem; color: var(--mut); line-height: 1.5; margin-bottom: 18px; }
+.pillar-meta {
+    padding-top: 14px; border-top: 1px dashed rgba(33, 160, 56, 0.2);
+    font-size: 0.84rem; font-weight: 700; color: var(--sber-grad-start); display: flex; align-items: center; gap: 8px;
+}
+.pillar-meta svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* Особая карточка для Руководства */
+.pillar-card.hl-pillar {
+    background: linear-gradient(145deg, #137727, #0a4f18); border: 1px solid rgba(182, 224, 74, 0.35);
+    color: #fff; box-shadow: 0 16px 36px rgba(16, 102, 33, 0.3);
+}
+.pillar-card.hl-pillar .pillar-icon { background: rgba(255, 255, 255, 0.18); border-color: rgba(255, 255, 255, 0.25); }
+.pillar-card.hl-pillar .pillar-icon svg { fill: var(--sber-lime); }
+.pillar-card.hl-pillar .pillar-badge { background: rgba(182, 224, 74, 0.25); color: var(--sber-lime); }
+.pillar-card.hl-pillar h3 { color: #fff; }
+.pillar-card.hl-pillar p { color: #d8f0de; }
+.pillar-card.hl-pillar .pillar-meta { border-top-color: rgba(255, 255, 255, 0.2); color: var(--sber-lime); }
+
+/* --- Слайд 05: Все карточки красиво размещены --- */
+.directions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.dir-card {
+    position: relative; padding: 28px 24px; border-radius: 24px;
+    background: var(--glass-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    overflow: hidden;
+}
+.dir-card:hover {
+    transform: translateY(-6px); box-shadow: 0 16px 36px rgba(33, 160, 56, 0.14);
+    border-color: rgba(33, 160, 56, 0.35);
+}
+.dir-card-large { grid-column: span 2; }
+.dir-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.dir-icon-wrap {
+    width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center;
+    background: linear-gradient(135deg, rgba(33, 160, 56, 0.15), rgba(182, 224, 74, 0.25));
+    color: var(--sber-green);
+}
+.dir-icon-wrap svg { width: 28px; height: 28px; fill: currentColor; }
+.dir-metric {
+    font-size: 0.78rem; font-weight: 800; padding: 4px 12px; border-radius: 99px;
+    background: rgba(33, 160, 56, 0.08); color: var(--sber-grad-start);
+}
+.dir-card h3 { font-size: 1.25rem; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+.dir-card p { font-size: 0.94rem; color: var(--mut); line-height: 1.5; margin-bottom: 16px; }
+
+.partner-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.p-chip {
+    font-size: 0.78rem; font-weight: 700; padding: 5px 12px; border-radius: 99px;
+    background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(0, 0, 0, 0.06); color: var(--ink);
+}
+.dir-feature {
+    display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; color: var(--sber-green);
+}
+.dir-feature svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* Акцент на первую карточку ретейла */
+.dir-card-large.hl-dir {
+    background: linear-gradient(135deg, #106622, #084013); border-color: rgba(182, 224, 74, 0.4);
+    box-shadow: 0 16px 36px rgba(16, 102, 34, 0.28);
+}
+.dir-card-large.hl-dir .dir-icon-wrap { background: rgba(255, 255, 255, 0.18); color: var(--sber-lime); }
+.dir-card-large.hl-dir .dir-metric { background: rgba(182, 224, 74, 0.2); color: var(--sber-lime); }
+.dir-card-large.hl-dir h3 { color: #fff; }
+.dir-card-large.hl-dir p { color: #d6eedb; }
+.dir-card-large.hl-dir .p-chip { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.25); color: #fff; }
+
+/* --- Слайд 06: Интерактивный график с карточкой подробностей при наведении --- */
+.chart-container-card {
+    padding: clamp(30px, 4vw, 50px);
+    border-radius: 30px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    box-shadow: var(--glass-shadow);
+}
+.chart-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 36px;
+    align-items: center;
+}
+.interactive-chart {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 2.5vw, 32px);
+    align-items: end;
+    height: 320px;
+    border-bottom: 2px solid rgba(33, 160, 56, 0.25);
+    padding-bottom: 4px;
+}
+.bar-col {
     display: flex;
     flex-direction: column;
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    outline: none;
 }
-.swot-card:hover {
-    transform: translateY(-6px);
+.bar-col .bar-fill {
+    display: block;
+    width: 100%;
+    height: 0;
+    border-radius: 14px 14px 0 0;
+    background: linear-gradient(180deg, var(--sber-lime), var(--sber-green) 70%);
+    box-shadow: 0 8px 24px rgba(33, 160, 56, 0.2);
+    transition: height 1.4s cubic-bezier(0.2, 0.8, 0.2, 1.1), filter 0.25s ease, transform 0.25s ease;
+}
+.active-chart .bar-col .bar-fill {
+    height: var(--h);
+}
+.bar-col:hover .bar-fill,
+.bar-col.selected .bar-fill {
+    filter: brightness(1.12);
+    transform: scaleX(1.05);
+    box-shadow: 0 12px 30px rgba(33, 160, 56, 0.38);
+}
+.bar-col .bar-val {
+    font-size: clamp(1.2rem, 2.5vw, 1.9rem);
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 8px;
+    transition: color 0.2s ease;
+}
+.bar-col:hover .bar-val,
+.bar-col.selected .bar-val {
+    color: var(--sber-grad-start);
+}
+.bar-col .bar-growth {
+    font-style: normal;
+    font-weight: 800;
+    color: var(--sber-green);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    background: rgba(33, 160, 56, 0.12);
+    padding: 3px 10px;
+    border-radius: 99px;
+}
+.years-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 2.5vw, 32px);
+    margin-top: 14px;
+    text-align: center;
+}
+.year-label {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--mut);
+    transition: color 0.25s ease;
+}
+.bar-col:hover + .year-label,
+.year-label.active {
+    color: var(--sber-green);
 }
 
-.swot-header {
+/* Информационная карточка справа от графика */
+.chart-info-box {
+    padding: 26px 22px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(33, 160, 56, 0.25);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 310px;
+    transition: all 0.3s ease;
+}
+.info-box-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 18px;
+    margin-bottom: 12px;
 }
-.swot-badge {
-    width: 38px;
-    height: 38px;
-    border-radius: 12px;
-    display: grid;
-    place-items: center;
-    font-weight: 800;
-    font-size: 1.1rem;
-}
-.swot-name {
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-}
-
-.swot-s { --swot-clr: #148f2b; }
-.swot-s:hover { box-shadow: 0 16px 36px rgba(20, 143, 43, 0.16); border-color: rgba(20, 143, 43, 0.3); }
-.swot-s .swot-badge { background: rgba(20, 143, 43, 0.12); color: var(--swot-clr); }
-.swot-s .swot-name { color: var(--swot-clr); }
-
-.swot-w { --swot-clr: #d97706; }
-.swot-w:hover { box-shadow: 0 16px 36px rgba(217, 119, 6, 0.16); border-color: rgba(217, 119, 6, 0.3); }
-.swot-w .swot-badge { background: rgba(217, 119, 6, 0.12); color: var(--swot-clr); }
-.swot-w .swot-name { color: var(--swot-clr); }
-
-.swot-o { --swot-clr: #0284c7; }
-.swot-o:hover { box-shadow: 0 16px 36px rgba(2, 132, 199, 0.16); border-color: rgba(2, 132, 199, 0.3); }
-.swot-o .swot-badge { background: rgba(2, 132, 199, 0.12); color: var(--swot-clr); }
-.swot-o .swot-name { color: var(--swot-clr); }
-
-.swot-t { --swot-clr: #e11d48; }
-.swot-t:hover { box-shadow: 0 16px 36px rgba(225, 29, 72, 0.16); border-color: rgba(225, 29, 72, 0.3); }
-.swot-t .swot-badge { background: rgba(225, 29, 72, 0.12); color: var(--swot-clr); }
-.swot-t .swot-name { color: var(--swot-clr); }
-
-.swot-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-size: 0.95rem;
-    color: #374151;
-    line-height: 1.45;
-}
-.swot-list li {
-    position: relative;
-    padding-left: 18px;
-}
-.swot-list li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    font-size: 1.2rem;
+.info-box-year {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--sber-grad-start);
     line-height: 1;
-    color: var(--swot-clr);
 }
-
-.pest-card {
-    padding: 20px 22px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    transition: all 0.3s ease;
-}
-.pest-card:hover {
-    background: rgba(255, 255, 255, 0.85);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(33, 160, 56, 0.08);
-}
-.pest-tag {
-    font-size: 0.75rem;
+.info-box-tag {
+    font-size: 0.74rem;
     font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: rgba(33, 160, 56, 0.12);
     color: var(--sber-green);
-    margin-bottom: 6px;
-    display: block;
+    text-transform: uppercase;
 }
-.pest-card h3 {
-    font-size: 1.15rem;
+.info-box-stat {
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--ink);
     margin-bottom: 8px;
 }
-.pest-card p {
+.info-box-desc {
     font-size: 0.92rem;
-    color: var(--mut);
-    line-height: 1.45;
+    color: #4b5563;
+    line-height: 1.5;
+    margin-bottom: 14px;
 }
+.info-box-tip {
+    font-size: 0.8rem;
+    color: var(--mut);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+}
+.badge-market {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 12px 24px;
+    border-radius: 99px;
+    background: var(--sber-green);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 8px 24px rgba(33, 160, 56, 0.3);
+}
+.badge-market span {
+    color: var(--sber-lime);
+    font-weight: 800;
+    font-size: 1.15rem;
+}
+
+/* --- Слайд 07: Конкурентная среда (Красивые логотипы и карточки) --- */
+.rivals-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.rival-card {
+    padding: 24px 20px;
+    border-radius: 22px;
+    background: var(--glass-dark-bg);
+    border: 1px solid var(--glass-dark-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease, border-color 0.3s ease;
+}
+.rival-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.13);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+.rival-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+.rival-logo-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    font-weight: 900;
+    font-size: 1.3rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+.rival-name-box h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+}
+.rival-name-box span {
+    font-size: 0.74rem;
+    color: #9ec5ad;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+.rival-card p {
+    font-size: 0.88rem;
+    color: #c9e0d1;
+    line-height: 1.45;
+    margin-bottom: 14px;
+}
+.rival-tag {
+    align-self: flex-start;
+    padding: 4px 10px;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Логотипы и фирменные цвета конкурентов */
+.logo-kuper { background: #21a038; color: #fff; }
+.logo-lavka { background: #fc3f1d; color: #fff; }
+.logo-eda { background: #ffcc00; color: #000; }
+.logo-samokat { background: #ff2d55; color: #fff; }
+.logo-vkusvill { background: #008938; color: #fff; }
+.logo-x5 { background: #22992e; color: #fff; }
+.logo-ozon { background: #005bff; color: #fff; }
+.logo-wb { background: #cb11ab; color: #fff; }
+
+/* Карточка Купера среди соперников */
+.rival-card.kuper-hero {
+    background: linear-gradient(145deg, rgba(33, 160, 56, 0.35), rgba(7, 43, 17, 0.7));
+    border: 1px solid var(--sber-lime);
+    box-shadow: 0 12px 32px rgba(33, 160, 56, 0.3);
+}
+.rival-card.kuper-hero:hover {
+    background: linear-gradient(145deg, rgba(33, 160, 56, 0.5), rgba(7, 43, 17, 0.8));
+    transform: translateY(-8px) scale(1.02);
+}
+.rival-card.kuper-hero .rival-tag {
+    background: var(--sber-lime);
+    color: #06200c;
+    font-weight: 800;
+}
+
+/* --- Слайд 08: SWOT и PEST --- */
+.analysis-block { margin-bottom: 44px; }
+.analysis-title {
+    font-size: 1.15rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--mut); margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+}
+.analysis-title::after { content: ""; flex: 1; height: 1px; background: rgba(33, 160, 56, 0.2); }
+
+.swot-card {
+    position: relative; padding: 26px 22px; border-radius: 24px;
+    background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+.swot-card:hover { transform: translateY(-6px); }
+.swot-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.swot-badge { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-weight: 800; font-size: 1.1rem; }
+.swot-name { font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; }
+
+.swot-s { --swot-clr: #148f2b; }
+.swot-s:hover { box-shadow: 0 16px 36px rgba(20, 143, 43, 0.16); }
+.swot-s .swot-badge { background: rgba(20, 143, 43, 0.12); color: var(--swot-clr); }
+.swot-s .swot-name { color: var(--swot-clr); }
+
+.swot-w { --swot-clr: #d97706; }
+.swot-w:hover { box-shadow: 0 16px 36px rgba(217, 119, 6, 0.16); }
+.swot-w .swot-badge { background: rgba(217, 119, 6, 0.12); color: var(--swot-clr); }
+.swot-w .swot-name { color: var(--swot-clr); }
+
+.swot-o { --swot-clr: #0284c7; }
+.swot-o:hover { box-shadow: 0 16px 36px rgba(2, 132, 199, 0.16); }
+.swot-o .swot-badge { background: rgba(2, 132, 199, 0.12); color: var(--swot-clr); }
+.swot-o .swot-name { color: var(--swot-clr); }
+
+.swot-t { --swot-clr: #e11d48; }
+.swot-t:hover { box-shadow: 0 16px 36px rgba(225, 29, 72, 0.16); }
+.swot-t .swot-badge { background: rgba(225, 29, 72, 0.12); color: var(--swot-clr); }
+.swot-t .swot-name { color: var(--swot-clr); }
+
+.swot-list {
+    list-style: none; display: flex; flex-direction: column; gap: 10px;
+    font-size: 0.92rem; color: #374151; line-height: 1.45;
+}
+.swot-list li { position: relative; padding-left: 18px; }
+.swot-list li::before { content: "•"; position: absolute; left: 0; font-size: 1.2rem; line-height: 1; color: var(--swot-clr); }
+
+.pest-card {
+    padding: 20px 22px; border-radius: 20px; background: rgba(255, 255, 255, 0.52);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5); transition: all 0.3s ease;
+}
+.pest-card:hover {
+    background: rgba(255, 255, 255, 0.88); transform: translateY(-4px); box-shadow: 0 12px 28px rgba(33, 160, 56, 0.08);
+}
+.pest-tag { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sber-green); margin-bottom: 6px; display: block; }
+.pest-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.pest-card p { font-size: 0.9rem; color: var(--mut); line-height: 1.45; }
 
 /* List */
 .list { display: grid; gap: 16px; margin-top: 24px; }
 .list div {
-    display: flex; align-items: center; gap: 20px; padding: 24px 28px; border-radius: 24px;
+    display: flex; align-items: center; gap: 20px; padding: 22px 28px; border-radius: 22px;
     background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border); font-size: clamp(1.05rem, 2vw, 1.25rem); font-weight: 600;
+    border: 1px solid var(--glass-border); font-size: clamp(1rem, 1.8vw, 1.2rem); font-weight: 600;
     box-shadow: var(--glass-shadow); transition: transform 0.3s;
 }
 .list div:hover { transform: translateX(8px); }
 .dark .list div { background: var(--glass-dark-bg); border-color: var(--glass-dark-border); color: #fff; box-shadow: none; }
 .list div::before {
-    content: ""; flex: none; width: 32px; height: 16px; border-left: 5px solid var(--sber-green); border-bottom: 5px solid var(--sber-green);
+    content: ""; flex: none; width: 30px; height: 15px; border-left: 5px solid var(--sber-green); border-bottom: 5px solid var(--sber-green);
     transform: rotate(-45deg) translate(3px, -6px); border-radius: 2px;
 }
 .dark .list div::before { border-color: var(--sber-lime); }
 
-.thanks { margin-top: 60px; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: var(--sber-lime); letter-spacing: -0.02em; }
+.thanks { margin-top: 50px; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 800; color: var(--sber-lime); letter-spacing: -0.02em; }
 footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: center; font-size: 0.95rem; font-weight: 500; }
 
 /* Анимации появления (Reveal) */
-.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .delay-1 { transition-delay: 0.1s; }
 .delay-2 { transition-delay: 0.2s; }
 .delay-3 { transition-delay: 0.3s; }
 .delay-4 { transition-delay: 0.4s; }
 
-@media(max-width: 900px) {
-    .g4 { grid-template-columns: repeat(2, 1fr); }
-    .g3 { grid-template-columns: 1fr 1fr; }
-    .bento { grid-template-columns: 1fr 1fr; }
-    .bento .card, .bento .w, .bento .big { grid-column: span 1; }
-    .bento .big { grid-column: span 2; }
-    .orb { opacity: 0.4; right: -20vw; }
+@media(max-width: 980px) {
+    .g4, .timeline-grid, .rivals-grid { grid-template-columns: repeat(2, 1fr); }
+    .directions-grid { grid-template-columns: 1fr; }
+    .dir-card-large { grid-column: auto; }
+    .chart-layout { grid-template-columns: 1fr; }
+    .flow-jur { flex-direction: column; }
+    .flow-jur .arrow { transform: rotate(90deg); margin: 6px 0; }
+    .card-jur { width: 100%; }
+    .eco-banner { flex-direction: column; align-items: flex-start; }
 }
-@media(max-width: 600px) {
-    .g4, .g3, .bento { grid-template-columns: 1fr; }
-    .bento .big { grid-column: auto; }
-    .flow { flex-direction: column; }
-    .flow .arrow { transform: rotate(90deg); margin: 10px 0; }
-    .card { padding: 24px; }
+@media(max-width: 640px) {
+    .g4, .g3, .timeline-grid, .rivals-grid { grid-template-columns: 1fr; }
+    .flip-card { height: 280px; }
+    .card-jur { padding: 26px 18px 26px 90px; }
+    .jur-fig { left: 16px; width: 56px; height: 56px; }
+    .interactive-chart { height: 260px; }
 }
 @media(prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .card, .col i, .reveal, .swot-card, .pest-card { transition: none !important; transform: none !important; opacity: 1 !important; }
+    .card, .bar-fill, .reveal, .swot-card, .pest-card, .flip-inner { transition: none !important; transform: none !important; opacity: 1 !important; }
     .orb { animation: none; }
 }
 </style>
@@ -419,90 +744,595 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
-<!-- 02. История -->
+<!-- 02. Девять лет от стартапа до экосистемы (Flip-карточки) -->
 <section class="glass-section">
     <div class="wrap">
-        <div class="head reveal"><span class="sec-n">02</span><h2>Девять лет от стартапа до экосистемы</h2><p class="sub">История создания компании</p></div>
-        <div class="grid g4 tl">
-            <div class="card reveal delay-1"><span class="y">2013</span><p>Пётр Федченков и братья Андрей и Дмитрий Жулины запускают Instamart</p></div>
-            <div class="card reveal delay-2"><span class="y">2019</span><p>Сервис входит в экосистему Сбера и становится «СберМаркетом»</p></div>
-            <div class="card reveal delay-3"><span class="y">2021</span><p>Сбер инвестирует ещё 12 млрд рублей</p></div>
-            <div class="card hl reveal delay-4"><span class="y" style="background:none;color:var(--sber-lime)">2024</span><p>1 июля — ребрендинг в «Купер» и новое позиционирование</p></div>
+        <div class="head reveal">
+            <span class="sec-n">02</span>
+            <h2>Девять лет от стартапа до экосистемы</h2>
+            <p class="sub">Нажмите на карточку любого года, чтобы узнать ключевые события и поворотные моменты</p>
+        </div>
+        
+        <div class="timeline-grid">
+            <!-- 2013 -->
+            <div class="flip-card reveal delay-1" tabindex="0" role="button" aria-label="Карточка 2013 года. Нажмите для подробностей">
+                <div class="flip-inner">
+                    <div class="flip-front">
+                        <div>
+                            <span class="badge-phase">Стартап</span>
+                            <div class="year-num">2013</div>
+                            <div class="card-title">Рождение Instamart в Москве</div>
+                        </div>
+                        <div class="tap-hint">
+                            <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                            Нажмите, чтобы перевернуть
+                        </div>
+                    </div>
+                    <div class="flip-back">
+                        <div class="flip-back-header">
+                            <span class="flip-back-year">2013 год</span>
+                            <span class="flip-back-close">назад ↺</span>
+                        </div>
+                        <p class="flip-back-text">
+                            Пётр Федченков и братья Андрей и Дмитрий Жулины открывают сервис доставки продуктов из Metro Cash & Carry. Бизнес начинался с ручной закупки несколькими курьерами и фокуса на корпоративных клиентах.
+                        </p>
+                        <div class="flip-back-stat">Шаг: Запуск сборки из гипермаркетов</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2019 -->
+            <div class="flip-card reveal delay-2" tabindex="0" role="button" aria-label="Карточка 2019 года. Нажмите для подробностей">
+                <div class="flip-inner">
+                    <div class="flip-front">
+                        <div>
+                            <span class="badge-phase">Экосистема</span>
+                            <div class="year-num">2019</div>
+                            <div class="card-title">Вхождение в экосистему Сбера</div>
+                        </div>
+                        <div class="tap-hint">
+                            <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                            Нажмите, чтобы перевернуть
+                        </div>
+                    </div>
+                    <div class="flip-back">
+                        <div class="flip-back-header">
+                            <span class="flip-back-year">2019 год</span>
+                            <span class="flip-back-close">назад ↺</span>
+                        </div>
+                        <p class="flip-back-text">
+                            Instamart входит в совместное предприятие Сбера и VK. Сервис переименован в <b>«СберМаркет»</b>, получает авторизацию Сбер ID, бонусы «Спасибо» и мгновенный федеральный рост в десятках регионов.
+                        </p>
+                        <div class="flip-back-stat">Шаг: Бренд Сбера и федеральный B2C</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2021 -->
+            <div class="flip-card reveal delay-3" tabindex="0" role="button" aria-label="Карточка 2021 года. Нажмите для подробностей">
+                <div class="flip-inner">
+                    <div class="flip-front">
+                        <div>
+                            <span class="badge-phase">Экспансия</span>
+                            <div class="year-num">2021</div>
+                            <div class="card-title">Инвестиции 12 млрд ₽ и лидерство</div>
+                        </div>
+                        <div class="tap-hint">
+                            <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                            Нажмите, чтобы перевернуть
+                        </div>
+                    </div>
+                    <div class="flip-back">
+                        <div class="flip-back-header">
+                            <span class="flip-back-year">2021 год</span>
+                            <span class="flip-back-close">назад ↺</span>
+                        </div>
+                        <p class="flip-back-text">
+                            Сбер инвестирует 12 млрд рублей в капитал платформы. Компания запускает экспресс-доставку от 20 минут, подключает горячие блюда из ресторанов и выходит на 1 место по обороту среди сервисов e-grocery в РФ.
+                        </p>
+                        <div class="flip-back-stat">Шаг: Рестораны и экспресс-доставка</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2024 -->
+            <div class="flip-card hl-card reveal delay-4" tabindex="0" role="button" aria-label="Карточка 2024 года. Нажмите для подробностей">
+                <div class="flip-inner">
+                    <div class="flip-front">
+                        <div>
+                            <span class="badge-phase">Новая эра</span>
+                            <div class="year-num">2024</div>
+                            <div class="card-title">Ребрендинг: рождение «Купера»</div>
+                        </div>
+                        <div class="tap-hint">
+                            <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                            Нажмите, чтобы перевернуть
+                        </div>
+                    </div>
+                    <div class="flip-back">
+                        <div class="flip-back-header">
+                            <span class="flip-back-year">2024 год</span>
+                            <span class="flip-back-close">назад ↺</span>
+                        </div>
+                        <p class="flip-back-text">
+                            1 июля 2024 проведён ребрендинг в <b>«Купер»</b> (от слова «покупать»). Сервис стал персональным гиперлокальным помощником: от аптек и ресторанов до C2C-посылок и рекламной платформы Retail Media.
+                        </p>
+                        <div class="flip-back-stat">Шаг: Мультивертикальная платформа</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- 03. Юрисдикция -->
+<!-- 03. Юрисдикция (С графическими фигурами) -->
 <section class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
     <div class="wrap">
-        <div class="head reveal"><span class="sec-n">03</span><h2>Возвращение в российскую юрисдикцию</h2><p class="sub">Организационно-правовая форма</p></div>
-        <div class="flow reveal delay-1">
-            <div class="card old"><h3>Кипр</h3><p>Прежняя регистрация компании</p></div>
+        <div class="head reveal">
+            <span class="sec-n">03</span>
+            <h2>Возвращение в российскую юрисдикцию</h2>
+            <p class="sub">Организационно-правовая форма и процесс деофшоризации</p>
+        </div>
+        
+        <div class="flow-jur reveal delay-1">
+            <div class="card-jur card-cyprus">
+                <div class="jur-fig" title="Античный храм Курион (Кипр)">
+                    <svg viewBox="0 0 64 64">
+                        <polygon points="32,6 6,22 58,22"/>
+                        <rect x="8" y="22" width="48" height="4" rx="1"/>
+                        <rect x="12" y="28" width="6" height="24" rx="1"/>
+                        <rect x="22" y="28" width="6" height="24" rx="1"/>
+                        <rect x="36" y="28" width="6" height="24" rx="1"/>
+                        <rect x="46" y="28" width="6" height="24" rx="1"/>
+                        <rect x="6" y="52" width="52" height="4" rx="1"/>
+                        <rect x="3" y="56" width="58" height="4" rx="1"/>
+                    </svg>
+                </div>
+                <div class="jur-watermark" aria-hidden="true">
+                    <svg viewBox="0 0 64 64">
+                        <polygon points="32,6 6,22 58,22"/><rect x="8" y="22" width="48" height="4"/><rect x="12" y="28" width="6" height="24"/><rect x="22" y="28" width="6" height="24"/><rect x="36" y="28" width="6" height="24"/><rect x="46" y="28" width="6" height="24"/><rect x="6" y="52" width="52" height="4"/><rect x="3" y="56" width="58" height="4"/>
+                    </svg>
+                </div>
+                <h3>Кипрская юрисдикция</h3>
+                <p>Прежняя офшорная структура холдинга на этапе венчурного роста стартапа Instamart</p>
+            </div>
+            
             <div class="arrow" aria-hidden="true">→</div>
-            <div class="card hl"><h3>ООО «Инстамарт Сервис»</h3><p>Российское юридическое лицо. Часть тренда деофшоризации активов Сбера</p></div>
+            
+            <div class="card-jur card-ru">
+                <div class="jur-fig" title="Спасская башня Кремля (Россия)">
+                    <svg viewBox="0 0 64 64">
+                        <polygon points="32,4 33,9 37,9 34,12 35,16 32,13 29,16 30,12 27,9 31,9"/>
+                        <polygon points="32,12 30,26 34,26"/>
+                        <rect x="25" y="26" width="14" height="12" rx="2"/>
+                        <circle cx="32" cy="32" r="3.5" fill="#138328"/>
+                        <path d="M18,38 L46,38 L46,58 L18,58 Z"/>
+                        <path d="M27,58 L27,47 Q32,44 37,47 L37,58 Z" fill="#138328"/>
+                        <rect x="14" y="42" width="5" height="16"/>
+                        <rect x="45" y="42" width="5" height="16"/>
+                    </svg>
+                </div>
+                <div class="jur-watermark" aria-hidden="true">
+                    <svg viewBox="0 0 64 64">
+                        <polygon points="32,4 33,9 37,9 34,12 35,16 32,13 29,16 30,12 27,9 31,9"/><rect x="25" y="26" width="14" height="12"/><circle cx="32" cy="32" r="4"/><path d="M18,38 L46,38 L46,58 L18,58 Z"/>
+                    </svg>
+                </div>
+                <h3>ООО «Инстамарт Сервис»</h3>
+                <p>100% российское юридическое лицо. Полная деофшоризация и финансовая суверенность бизнеса</p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- 04. Экосистема -->
+<!-- 04. Слайд: Платформа внутри экосистемы Сбера (Исправленный дизайн и структура) -->
 <section class="glass-section">
     <div class="wrap">
-        <div class="head reveal"><span class="sec-n">04</span><h2>Платформа внутри экосистемы Сбера</h2><p class="sub">Купер входит в e-commerce направление вместе с «Самокатом» и «МегаМаркетом»</p></div>
+        <div class="head reveal">
+            <span class="sec-n">04</span>
+            <h2>Опорный контур экосистемы Сбера</h2>
+            <p class="sub">Вместе с «Самокатом» (экспресс) и «МегаМаркетом» (non-food) «Купер» закрывает сегмент плановых покупок</p>
+        </div>
+
+        <div class="eco-banner reveal delay-1">
+            <div class="eco-banner-text">
+                <b>E-commerce триада группы Сбер</b>
+                <span>Единая авторизация по Сбер ID, начисление бонусов СберСпасибо и привилегии подписки СберПрайм</span>
+            </div>
+            <div class="eco-pills">
+                <span class="eco-pill">Купер</span>
+                <span class="eco-pill">Самокат</span>
+                <span class="eco-pill">МегаМаркет</span>
+            </div>
+        </div>
+
         <div class="grid g4">
-            <div class="card hl reveal delay-1"><div class="ico">1</div><h3>Руководство</h3><p>Гендиректор Артур Саркисов. Ранее компанию возглавляла Анастасия Кудрявцева</p></div>
-            <div class="card reveal delay-2"><div class="ico">2</div><h3>Партнёры</h3><p>Подразделения по работе с ретейлерами и ресторанами</p></div>
-            <div class="card reveal delay-3"><div class="ico">3</div><h3>Люди</h3><p>Собственная служба курьеров и сборщиков</p></div>
-            <div class="card reveal delay-4"><div class="ico">4</div><h3>Логистика</h3><p>Сеть дарксторов — складов для онлайн-заказов</p></div>
+            <!-- 1. Руководство -->
+            <div class="pillar-card hl-pillar reveal delay-1">
+                <div>
+                    <div class="pillar-top">
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        </div>
+                        <span class="pillar-badge">Leadership</span>
+                    </div>
+                    <h3>Топ-менеджмент</h3>
+                    <p>Генеральный директор Артур Саркисов. Фокус на операционной рентабельности и укреплении автономного бренда.</p>
+                </div>
+                <div class="pillar-meta">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                    Ранее руководила Анастасия Кудрявцева
+                </div>
+            </div>
+
+            <!-- 2. Партнёры -->
+            <div class="pillar-card reveal delay-2">
+                <div>
+                    <div class="pillar-top">
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                        </div>
+                        <span class="pillar-badge">B2B Network</span>
+                    </div>
+                    <h3>Партнёрская база</h3>
+                    <p>Прямая интеграция с кассовыми системами гипермаркетов и более 35 000 ресторанов по всей России.</p>
+                </div>
+                <div class="pillar-meta">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                    Metro, Ашан, Лента, X5, Магнит
+                </div>
+            </div>
+
+            <!-- 3. Люди и курьеры -->
+            <div class="pillar-card reveal delay-3">
+                <div>
+                    <div class="pillar-top">
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        </div>
+                        <span class="pillar-badge">Operations</span>
+                    </div>
+                    <h3>Служба полевых сил</h3>
+                    <p>Специализированные роли: обученные сборщики прямо в залах ретейлеров и гибкий курьерский пул.</p>
+                </div>
+                <div class="pillar-meta">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                    Контроль свежести и сроков годности
+                </div>
+            </div>
+
+            <!-- 4. Логистика -->
+            <div class="pillar-card reveal delay-4">
+                <div>
+                    <div class="pillar-top">
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                        </div>
+                        <span class="pillar-badge">Logistics</span>
+                    </div>
+                    <h3>Дарксторы и софт</h3>
+                    <p>Гибридная модель: доставка из торговых залов + сеть мини-складов онлайн-заказов (дарксторов).</p>
+                </div>
+                <div class="pillar-meta">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                    Интеллектуальная кластеризация зон
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- 05. Направления деятельности -->
+<!-- 05. Направления деятельности (Гармоничная сетка всех карточек) -->
 <section class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
     <div class="wrap">
-        <div class="head reveal"><span class="sec-n">05</span><h2>Не только продукты</h2><p class="sub">Ключевые направления деятельности</p></div>
-        <div class="grid bento">
-            <div class="card hl big reveal delay-1"><div class="ico">П</div><h3>Продукты</h3><p>Доставка из магазинов-партнёров: «Ашан», «Лента», Metro, O'Key, «Магнит», X5 Retail Group</p></div>
-            <div class="card reveal delay-2"><div class="ico">Е</div><h3>Готовая еда</h3><p>Рестораны-партнёры</p></div>
-            <div class="card reveal delay-3"><div class="ico">Н</div><h3>Не только еда</h3><p>Лекарства, цветы и электроника</p></div>
-            <div class="card w reveal delay-1"><div class="ico">C</div><h3>C2C и B2G</h3><p>Доставка посылок между людьми и снабжение социальных учреждений</p></div>
-            <div class="card w reveal delay-2"><div class="ico">R</div><h3>Retail media</h3><p>Продажа рекламы на платформе</p></div>
+        <div class="head reveal">
+            <span class="sec-n">05</span>
+            <h2>Не только продукты: мультисервисная витрина</h2>
+            <p class="sub">Эволюция от нишевого сборщика еды до универсального гиперлокального маркетплейса</p>
+        </div>
+
+        <div class="directions-grid">
+            <!-- 1. Продукты (Главная большая карточка) -->
+            <div class="dir-card dir-card-large hl-dir reveal delay-1">
+                <div>
+                    <div class="dir-header">
+                        <div class="dir-icon-wrap">
+                            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                        </div>
+                        <span class="dir-metric">Ядро бизнеса · 80%+ GMV</span>
+                    </div>
+                    <h3>Доставка продуктов из торговых сетей</h3>
+                    <p>Плановые семейные закупки больших чеков и быстрая экспресс-доставка прямо к порогу от ведущих розничных гигантов страны.</p>
+                </div>
+                <div class="partner-chips">
+                    <span class="p-chip">Metro Cash & Carry</span>
+                    <span class="p-chip">Лента</span>
+                    <span class="p-chip">Ашан</span>
+                    <span class="p-chip">Магнит</span>
+                    <span class="p-chip">X5 (Перекрёсток)</span>
+                    <span class="p-chip">О’КЕЙ</span>
+                </div>
+            </div>
+
+            <!-- 2. Готовая еда из ресторанов -->
+            <div class="dir-card reveal delay-2">
+                <div>
+                    <div class="dir-header">
+                        <div class="dir-icon-wrap">
+                            <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+                        </div>
+                        <span class="dir-metric">Express · 30-45 мин</span>
+                    </div>
+                    <h3>Рестораны и фастфуд</h3>
+                    <p>Прямая конкуренция с сервисами Яндекс Еда за счёт объединения продуктового и ресторанного чека в одном приложении.</p>
+                </div>
+                <div class="dir-feature">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                    Тысячи локальных кафе и сетей
+                </div>
+            </div>
+
+            <!-- 3. Non-food: аптеки, зоо, электроника -->
+            <div class="dir-card reveal delay-3">
+                <div>
+                    <div class="dir-header">
+                        <div class="dir-icon-wrap">
+                            <svg viewBox="0 0 24 24"><path d="M4.5 10.5C3.67 10.5 3 11.17 3 12s.67 1.5 1.5 1.5h15c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5h-15z M10.5 4.5C10.5 3.67 11.17 3 12 3s1.5.67 1.5 1.5v15c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5v-15z"/></svg>
+                        </div>
+                        <span class="dir-metric">Товары первой необходимости</span>
+                    </div>
+                    <h3>Аптеки, зоотовары и цветы</h3>
+                    <p>Срочные заказы безрецептурных медикаментов (Еаптека), цветов и подарков, кормов для питомцев и мелкой электроники.</p>
+                </div>
+                <div class="dir-feature">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                    Доставка за 20–60 минут
+                </div>
+            </div>
+
+            <!-- 4. C2C и B2G доставка -->
+            <div class="dir-card reveal delay-1">
+                <div>
+                    <div class="dir-header">
+                        <div class="dir-icon-wrap">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <span class="dir-metric">Новые бизнес-модели</span>
+                    </div>
+                    <h3>C2C-посылки и B2G</h3>
+                    <p>Курьерская доставка личных вещей между пользователями в городе и снабжение социальных учреждений в рамках госконтрактов.</p>
+                </div>
+                <div class="dir-feature">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                    Социальная роль и B2B логистика
+                </div>
+            </div>
+
+            <!-- 5. Retail media -->
+            <div class="dir-card reveal delay-2">
+                <div>
+                    <div class="dir-header">
+                        <div class="dir-icon-wrap">
+                            <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM5 15h14v3H5z"/></svg>
+                        </div>
+                        <span class="dir-metric">Маржинальность 70%+</span>
+                    </div>
+                    <h3>Retail Media платформа</h3>
+                    <p>Рекламный инвентарь для брендов: баннеры, спонсорские полки, брендированные семплы и промо в корзине на миллионную аудиторию.</p>
+                </div>
+                <div class="dir-feature">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                    Драйвер чистой прибыли
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- 06. Финансы -->
+<!-- 06. Финансы (Интерактивный график с описанием при наведении) -->
 <section id="fin" class="glass-section">
     <div class="wrap">
-        <div class="head reveal"><span class="sec-n">06</span><h2>Оборот вырос в 3,5 раза за три года</h2><p class="sub">Финансовые показатели: GMV по годам, млрд рублей</p></div>
-        <div class="card chart-card reveal delay-1">
-            <div class="chart" role="img" aria-label="GMV: 58,6; 103,5; 165,6; 204,2 млрд рублей">
-                <div class="col"><b>58,6</b><i style="--h:29%"></i></div>
-                <div class="col"><em>+77%</em><b>103,5</b><i style="--h:51%"></i></div>
-                <div class="col"><em>+60%</em><b>165,6</b><i style="--h:81%"></i></div>
-                <div class="col"><em>+23%</em><b>204,2</b><i style="--h:100%"></i></div>
+        <div class="head reveal">
+            <span class="sec-n">06</span>
+            <h2>Оборот вырос в 3,5 раза за три года</h2>
+            <p class="sub">Финансовые показатели: GMV сервиса (млрд рублей). Наведите курсор на столбец любого года для подробного разбора</p>
+        </div>
+
+        <div class="chart-container-card reveal delay-1">
+            <div class="chart-layout">
+                <!-- Столбчатый график -->
+                <div>
+                    <div class="interactive-chart" role="img" aria-label="График GMV Купер с 2021 по 2024 год">
+                        <!-- 2021 -->
+                        <div class="bar-col" tabindex="0" data-year="2021" data-gmv="58,6 млрд ₽" data-growth="База масштабирования" data-desc="Начало агрессивных экосистемных инвестиций Сбера (12 млрд ₽). Развёртывание экспресс-доставки и закрепление в статусе ключевого игрока доставки из гипермаркетов.">
+                            <span class="bar-val">58,6</span>
+                            <span class="bar-fill" style="--h:29%"></span>
+                        </div>
+                        <!-- 2022 -->
+                        <div class="bar-col" tabindex="0" data-year="2022" data-gmv="103,5 млрд ₽" data-growth="+77% г/г" data-desc="Прорывной рост в эпоху ухода зарубежных игроков. Преодоление психологической планки в 100 млрд рублей и выход на федеральное покрытие более 150 городов.">
+                            <span class="bar-growth">+77%</span>
+                            <span class="bar-val">103,5</span>
+                            <span class="bar-fill" style="--h:51%"></span>
+                        </div>
+                        <!-- 2023 -->
+                        <div class="bar-col" tabindex="0" data-year="2023" data-gmv="165,6 млрд ₽" data-growth="+60% г/г" data-desc="Активное внедрение доставки готовой ресторанной еды, масштабирование дарксторов и оптимизация логистики 'последней мили'. Сервис прочно удерживает позицию №1 по объёму e-grocery.">
+                            <span class="bar-growth">+60%</span>
+                            <span class="bar-val">165,6</span>
+                            <span class="bar-fill" style="--h:81%"></span>
+                        </div>
+                        <!-- 2024 -->
+                        <div class="bar-col selected" tabindex="0" data-year="2024" data-gmv="204,2 млрд ₽" data-growth="+23% г/г" data-desc="Год масштабного ребрендинга в 'Купер'. Платформа перешагнула отметку в 200 миллиардов GMV, расширив B2G, C2C и рекламную платформу для монетизации трафика.">
+                            <span class="bar-growth">+23%</span>
+                            <span class="bar-val">204,2</span>
+                            <span class="bar-fill" style="--h:100%"></span>
+                        </div>
+                    </div>
+                    <div class="years-row">
+                        <span class="year-label" id="yl-2021">2021</span>
+                        <span class="year-label" id="yl-2022">2022</span>
+                        <span class="year-label" id="yl-2023">2023</span>
+                        <span class="year-label active" id="yl-2024">2024</span>
+                    </div>
+                    <div class="badge-market">
+                        <span>№2</span> в общем рейтинге e-grocery платформ России (INFOLine)
+                    </div>
+                </div>
+
+                <!-- Карточка-информер при наведении -->
+                <div class="chart-info-box" id="chartInfoBox">
+                    <div>
+                        <div class="info-box-header">
+                            <span class="info-box-year" id="infoYear">2024</span>
+                            <span class="info-box-tag" id="infoGrowth">+23% г/г</span>
+                        </div>
+                        <div class="info-box-stat" id="infoGmv">204,2 млрд ₽ GMV</div>
+                        <p class="info-box-desc" id="infoDesc">
+                            Год масштабного ребрендинга в «Купер». Платформа перешагнула отметку в 200 миллиардов GMV, расширив B2G, C2C и рекламную платформу для монетизации трафика.
+                        </p>
+                    </div>
+                    <div class="info-box-tip">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        Наведите на другие столбцы для анализа
+                    </div>
+                </div>
             </div>
-            <div class="years"><span>2021</span><span>2022</span><span>2023</span><span>2024</span></div>
-            <span class="badge"><span>№2</span> среди e-grocery платформ России</span>
         </div>
     </div>
 </section>
 
-<!-- 07. Конкуренты -->
+<!-- 07. Конкурентная среда (С логотипами и емким описанием) -->
 <section class="dark">
     <div class="wrap">
-        <div class="head reveal"><span class="sec-n">07</span><h2>Борьба за частоту покупок</h2><p class="sub">Конкурентная среда</p></div>
-        <div class="chips reveal delay-1">
-            <span class="chip me">Купер</span>
-            <span class="chip">Яндекс Лавка</span>
-            <span class="chip">Яндекс Еда</span>
-            <span class="chip">Самокат</span>
-            <span class="chip">ВкусВилл</span>
-            <span class="chip">Доставка X5</span>
-            <span class="chip">Ozon Fresh</span>
-            <span class="chip">Wildberries</span>
+        <div class="head reveal">
+            <span class="sec-n">07</span>
+            <h2>Борьба за частоту контактов с клиентом</h2>
+            <p class="sub">В российском фудтехе ключевая битва идёт не за ассортимент, а за сценарий «заказа на каждый день»</p>
         </div>
-        <p class="sub reveal delay-2" style="margin-top: 36px; color: #a4c9b2;"><b>Вызовы:</b> высокая конкуренция, судебные споры и укрепление узнаваемости после ребрендинга</p>
+
+        <div class="rivals-grid">
+            <!-- Купер -->
+            <div class="rival-card kuper-hero reveal delay-1">
+                <div>
+                    <div class="rival-top">
+                        <div class="rival-logo-box logo-kuper">К</div>
+                        <div class="rival-name-box">
+                            <h3>Купер</h3>
+                            <span>Сбер / Наш сервис</span>
+                        </div>
+                    </div>
+                    <p>Гипермаркеты, рестораны и быстрая экспресс-доставка. Доступ ко всей базе экосистемы Сбера.</p>
+                </div>
+                <span class="rival-tag">Широкий чек + Food</span>
+            </div>
+
+            <!-- Яндекс Лавка -->
+            <div class="rival-card reveal delay-2">
+                <div>
+                    <div class="rival-top">
+                        <div class="rival-logo-box logo-lavka">Л</div>
+                        <div class="rival-name-box">
+                            <h3>Яндекс Лавка</h3>
+                            <span>Яндекс</span>
+                        </div>
+                    </div>
+                    <p>Ультрабыстрая доставка за 15 минут из собственных дарксторов с акцентом на готовую кулинарию и СТМ.</p>
+                </div>
+                <span class="rival-tag">Ultrafast (15 мин)</span>
+            </div>
+
+            <!-- Яндекс Еда -->
+            <div class="rival-card reveal delay-3">
+                <div>
+                    <div class="rival-top">
+                        <div class="rival-logo-box logo-eda">Е</div>
+                        <div class="rival-name-box">
+                            <h3>Яндекс Еда / Delivery</h3>
+                            <span>Яндекс</span>
+                        </div>
+                    </div>
+                    <p>Абсолютный лидер в сегменте ресторанов с мощной интеграцией подписки Яндекс Плюс.</p>
+                </div>
+                <span class="rival-tag">Рестораны №1</span>
+            </div>
+
+            <!-- Самокат -->
+            <div class="rival-card reveal delay-4">
+                <div>
+                    <div class="rival-top">
+                        <div class="rival-logo-box logo-samokat">С</div>
+                        <div class="rival-name-box">
+                            <h3>Самокат</h3>
+                            <span>Сбер (Партнёр)</span>
+                        </div>
+                    </div>
+                    <p>Лидер ультрабыстрого сегмента по числу заказов. Крупнейшая сеть мини-дарксторов в спальных районах.</p>
+                </div>
+                <span class="rival-tag">Частота заказов</span>
+            </div>
+
+            <!-- ВкусВилл -->
+            <div class="rival-card reveal delay-1">
+                <div>
+                    <div class="rival-top">
+                        <div class="rival-logo-box logo-vkusvill">В</div>
+                        <div class="rival-name-box">
+                            <h3>ВкусВилл</h3>
+                            <span>ВкусВилл</span>
+                        </div>
+                    </div>
+                    <p>Бесплатная доставка продуктов здорового питания со 100% долей собственной торговой марки.</p>
+                </div>
+                <span class="rival-tag">Здоровое питание / СТМ</span>
+            </div>
+
+            <!-- Доставка X5 -->
+            <div class="rival-card reveal delay-2">
+                <div>
+                    <div class="rival-top">
+                        <div class="rival-logo-box logo-x5">X5</div>
+                        <div class="rival-name-box">
+                            <h3>X5 Доставка</h3>
+                            <span>Пятёрочка / Перекрёсток</span>
+                        </div>
+                    </div>
+                    <p>Собственные сервисы ритейлера №1 в РФ. Доставка прямо из 20 000+ магазинов у дома по всей стране.</p>
+                </div>
+                <span class="rival-tag">Инфраструктура офлайна</span>
+            </div>
+
+            <!-- Ozon Fresh -->
+            <div class="rival-card reveal delay-3">
+                <div>
+                    <div class="rival-top">
+                        <div class="rival-logo-box logo-ozon">O3</div>
+                        <div class="rival-name-box">
+                            <h3>Ozon Fresh</h3>
+                            <span>Ozon</span>
+                        </div>
+                    </div>
+                    <p>Собственная dark store инфраструктура маркетплейса: продукты питания, свежая выпечка и сопутствующие товары.</p>
+                </div>
+                <span class="rival-tag">Складской E-com</span>
+            </div>
+
+            <!-- Wildberries -->
+            <div class="rival-card reveal delay-4">
+                <div>
+                    <div class="rival-top">
+                        <div class="rival-logo-box logo-wb">WB</div>
+                        <div class="rival-name-box">
+                            <h3>WB Экспресс</h3>
+                            <span>Wildberries / RWB</span>
+                        </div>
+                    </div>
+                    <p>Агрессивный вход в доставку скоропортящихся товаров и готовых блюд через сеть ПВЗ и локальных складов.</p>
+                </div>
+                <span class="rival-tag">Масштаб ПВЗ</span>
+            </div>
+        </div>
+
+        <p class="sub reveal delay-2" style="margin-top: 36px; color: #a4c9b2;">
+            <b>Стратегический вызов для «Купера»</b>: не конкурировать с «Самокатом» внутри одной экосистемы, а удерживать лидерство в сегменте большой плановой семейной корзины.
+        </p>
     </div>
 </section>
 
@@ -512,7 +1342,7 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
         <div class="head reveal">
             <span class="sec-n">08</span>
             <h2>Стратегический аудит: SWOT и PEST</h2>
-            <p class="sub">Масштаб экосистемы Сбера против высокой стоимости логистики и рыночной конкуренции</p>
+            <p class="sub">Масштаб экосистемы Сбера против высокой стоимости логистики и жесткой рыночной конкуренции</p>
         </div>
         
         <div class="analysis-block">
@@ -599,11 +1429,11 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
 <!-- 09. Социальная роль -->
 <section class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
     <div class="wrap">
-        <div class="head reveal"><span class="sec-n">09</span><h2>Бизнес с социальной ролью</h2><p class="sub">Некоммерческая деятельность</p></div>
+        <div class="head reveal"><span class="sec-n">09</span><h2>Бизнес с социальной ролью</h2><p class="sub">Некоммерческая деятельность и социальные стандарты</p></div>
         <div class="list">
-            <div class="reveal delay-1">B2G: товары первой необходимости для жителей домов-интернатов и соцучреждений</div>
-            <div class="reveal delay-2">Участие в ассоциациях цифровых платформ, формирующих стандарты рынка</div>
-            <div class="reveal delay-3">Поддержка благотворительных программ экосистемы Сбера</div>
+            <div class="reveal delay-1">B2G: товары первой необходимости для жителей домов-интернатов и социальных учреждений</div>
+            <div class="reveal delay-2">Участие в ассоциациях цифровых платформ, формирующих цивилизованные стандарты рынка</div>
+            <div class="reveal delay-3">Поддержка благотворительных и экологических программ экосистемы Сбера</div>
         </div>
     </div>
 </section>
@@ -615,9 +1445,9 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
         <div class="head reveal"><span class="sec-n">10</span><h2>Платформа ежедневных покупок</h2><p class="sub">Перспективы развития</p></div>
         <div class="list" style="max-width: 700px;">
             <div class="reveal delay-1">Масштабирование B2G и C2C-доставки</div>
-            <div class="reveal delay-2">Retail media как высокомаржинальное направление</div>
-            <div class="reveal delay-3">Региональная экспансия</div>
-            <div class="reveal delay-4">Укрепление бренда «Купер» в экосистеме</div>
+            <div class="reveal delay-2">Retail media как главное высокомаржинальное направление</div>
+            <div class="reveal delay-3">Региональная экспансия в города 100k+</div>
+            <div class="reveal delay-4">Укрепление самостоятельного бренда «Купер» в экосистеме</div>
         </div>
         <p class="thanks reveal delay-4">Спасибо за внимание!</p>
     </div>
@@ -626,14 +1456,56 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
 <footer>Презентация для дисциплины «Электронный бизнес» · Исиев Э., Былков Г.</footer>
 
 <script>
-// Прогресс-бар
+// Прогресс-бар страницы
 const bar = document.getElementById('bar');
 window.addEventListener('scroll', () => {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     bar.style.width = (maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0) + '%';
 }, { passive: true });
 
-// Адаптер: Intersection Observer для анимаций появления элементов
+// Обработка переворачивания 3D Flip-карточек таймлайна (Слайд 02)
+document.querySelectorAll('.flip-card').forEach(card => {
+    card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+    });
+
+    card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.classList.toggle('flipped');
+        }
+    });
+});
+
+// Интерактив для Слайда 06 (Финансовый график)
+const barCols = document.querySelectorAll('.bar-col');
+const infoYear = document.getElementById('infoYear');
+const infoGrowth = document.getElementById('infoGrowth');
+const infoGmv = document.getElementById('infoGmv');
+const infoDesc = document.getElementById('infoDesc');
+
+barCols.forEach(col => {
+    const updateInfo = () => {
+        barCols.forEach(c => c.classList.remove('selected'));
+        document.querySelectorAll('.year-label').forEach(yl => yl.classList.remove('active'));
+        
+        col.classList.add('selected');
+        const year = col.getAttribute('data-year');
+        const ylEl = document.getElementById(`yl-${year}`);
+        if (ylEl) ylEl.classList.add('active');
+
+        infoYear.textContent = year;
+        infoGrowth.textContent = col.getAttribute('data-growth');
+        infoGmv.textContent = col.getAttribute('data-gmv');
+        infoDesc.textContent = col.getAttribute('data-desc');
+    };
+
+    col.addEventListener('mouseenter', updateInfo);
+    col.addEventListener('focus', updateInfo);
+    col.addEventListener('click', updateInfo);
+});
+
+// Intersection Observer для плавного появления элементов
 const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -645,7 +1517,6 @@ const observer = new IntersectionObserver((entries, obs) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
             
-            // Специальная анимация для графика
             if (entry.target.id === 'fin') {
                 entry.target.classList.add('active-chart');
             }
