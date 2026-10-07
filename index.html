@@ -22,7 +22,7 @@
     --ink: #1c211e;
     --mut: #68756e;
     --bg: #f4f7f5;
-    --w: 1140px;
+    --w: 1160px;
     
     --glass-bg: rgba(255, 255, 255, 0.68);
     --glass-border: rgba(255, 255, 255, 0.5);
@@ -121,21 +121,144 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
 }
 @keyframes pulse { 0% { transform: translateY(-50%) scale(1); opacity: 0.5; } 100% { transform: translateY(-50%) scale(1.1); opacity: 0.8; } }
 
-/* Карточки базовые */
-.card {
-    position: relative; padding: 30px; border-radius: 26px;
-    background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
-    overflow: hidden; z-index: 1;
-}
-.card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(33, 160, 56, 0.14); }
-
+/* Сетка карточек */
 .grid { display: grid; gap: clamp(16px, 2vw, 24px); }
 .g4 { grid-template-columns: repeat(4, 1fr); }
 .g3 { grid-template-columns: repeat(3, 1fr); }
 
-/* --- Слайд 02: Интерактивные Flip-карточки --- */
+/* --- Слайд 02: Бизнес-план (Паспорт проекта) --- */
+.bp-table-card {
+    border-radius: 28px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--glass-shadow);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.bp-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.bp-table th {
+    background: linear-gradient(90deg, rgba(33, 160, 56, 0.12), rgba(182, 224, 74, 0.08));
+    padding: 18px 24px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sber-grad-start);
+    border-bottom: 1px solid rgba(33, 160, 56, 0.2);
+}
+
+.bp-table td {
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.96rem;
+    vertical-align: middle;
+}
+
+.bp-table tr:last-child td {
+    border-bottom: none;
+}
+
+.bp-table tr:hover td {
+    background: rgba(33, 160, 56, 0.03);
+}
+
+.bp-num-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    display: inline-grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--sber-lime), var(--sber-green));
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(33, 160, 56, 0.25);
+    margin-right: 12px;
+}
+
+.bp-param-name {
+    font-weight: 800;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+}
+
+.bp-pill-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 99px;
+    background: rgba(33, 160, 56, 0.1);
+    color: var(--sber-grad-start);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+/* Bento-сетка ключевых акцентов паспорта */
+.bp-bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.bp-bento-card {
+    padding: 26px 24px;
+    border-radius: 24px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: var(--glass-shadow);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bp-bento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(33, 160, 56, 0.14);
+}
+
+.bp-bento-card.hl-bp {
+    background: linear-gradient(145deg, #137727, #084013);
+    border-color: rgba(182, 224, 74, 0.35);
+    color: #fff;
+    box-shadow: 0 16px 36px rgba(16, 102, 33, 0.28);
+}
+
+.bp-bento-card.hl-bp h3 { color: #fff; }
+.bp-bento-card.hl-bp p { color: #d8f2df; }
+.bp-bento-card.hl-bp .bp-pill-tag { background: rgba(182, 224, 74, 0.2); color: var(--sber-lime); }
+
+.bp-bento-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.bp-bento-card h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 8px;
+}
+
+.bp-bento-card p {
+    font-size: 0.92rem;
+    color: var(--mut);
+    line-height: 1.45;
+}
+
+/* --- Слайд 03: Интерактивные Flip-карточки --- */
 .timeline-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -210,7 +333,7 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
 .flip-card.hl-card .flip-back-text { color: #e5f5ea; }
 .flip-card.hl-card .flip-back-stat { background: rgba(182, 224, 74, 0.15); }
 
-/* --- Слайд 03: Юрисдикция --- */
+/* --- Слайд 04: Юрисдикция --- */
 .flow-jur { display: flex; align-items: center; gap: 24px; }
 .card-jur {
     position: relative; flex: 1; min-height: 220px; padding: 34px 34px 34px 116px;
@@ -247,7 +370,7 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
     color: var(--sber-green); box-shadow: var(--glass-shadow); flex-shrink: 0;
 }
 
-/* --- Слайд 04: Платформа внутри экосистемы (Обновленный) --- */
+/* --- Слайд 05: Платформа внутри экосистемы --- */
 .eco-banner {
     display: flex; align-items: center; justify-content: space-between; gap: 24px;
     padding: 24px 32px; border-radius: 22px; background: rgba(33, 160, 56, 0.08);
@@ -293,7 +416,6 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
 }
 .pillar-meta svg { width: 14px; height: 14px; fill: currentColor; }
 
-/* Особая карточка для Руководства */
 .pillar-card.hl-pillar {
     background: linear-gradient(145deg, #137727, #0a4f18); border: 1px solid rgba(182, 224, 74, 0.35);
     color: #fff; box-shadow: 0 16px 36px rgba(16, 102, 33, 0.3);
@@ -305,7 +427,7 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
 .pillar-card.hl-pillar p { color: #d8f0de; }
 .pillar-card.hl-pillar .pillar-meta { border-top-color: rgba(255, 255, 255, 0.2); color: var(--sber-lime); }
 
-/* --- Слайд 05: Все карточки красиво размещены --- */
+/* --- Слайд 06: Направления деятельности --- */
 .directions-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -348,7 +470,6 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
 }
 .dir-feature svg { width: 16px; height: 16px; fill: currentColor; }
 
-/* Акцент на первую карточку ретейла */
 .dir-card-large.hl-dir {
     background: linear-gradient(135deg, #106622, #084013); border-color: rgba(182, 224, 74, 0.4);
     box-shadow: 0 16px 36px rgba(16, 102, 34, 0.28);
@@ -359,7 +480,7 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
 .dir-card-large.hl-dir p { color: #d6eedb; }
 .dir-card-large.hl-dir .p-chip { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.25); color: #fff; }
 
-/* --- Слайд 06: Интерактивный график с карточкой подробностей при наведении --- */
+/* --- Слайд 07: Интерактивный график GMV --- */
 .chart-container-card {
     padding: clamp(30px, 4vw, 50px);
     border-radius: 30px;
@@ -452,7 +573,6 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
     color: var(--sber-green);
 }
 
-/* Информационная карточка справа от графика */
 .chart-info-box {
     padding: 26px 22px;
     border-radius: 22px;
@@ -526,7 +646,7 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
     font-size: 1.15rem;
 }
 
-/* --- Слайд 07: Конкурентная среда (Красивые логотипы и карточки) --- */
+/* --- Слайд 08: Конкурентная среда --- */
 .rivals-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -595,7 +715,6 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
     color: #fff;
 }
 
-/* Логотипы и фирменные цвета конкурентов */
 .logo-kuper { background: #21a038; color: #fff; }
 .logo-lavka { background: #fc3f1d; color: #fff; }
 .logo-eda { background: #ffcc00; color: #000; }
@@ -605,7 +724,6 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
 .logo-ozon { background: #005bff; color: #fff; }
 .logo-wb { background: #cb11ab; color: #fff; }
 
-/* Карточка Купера среди соперников */
 .rival-card.kuper-hero {
     background: linear-gradient(145deg, rgba(33, 160, 56, 0.35), rgba(7, 43, 17, 0.7));
     border: 1px solid var(--sber-lime);
@@ -621,7 +739,7 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; font-weight: 800; 
     font-weight: 800;
 }
 
-/* --- Слайд 08: SWOT и PEST --- */
+/* --- Слайд 09: SWOT и PEST --- */
 .analysis-block { margin-bottom: 44px; }
 .analysis-title {
     font-size: 1.15rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;
@@ -708,13 +826,15 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
 
 @media(max-width: 980px) {
     .g4, .timeline-grid, .rivals-grid { grid-template-columns: repeat(2, 1fr); }
-    .directions-grid { grid-template-columns: 1fr; }
+    .directions-grid, .bp-bento { grid-template-columns: 1fr; }
     .dir-card-large { grid-column: auto; }
     .chart-layout { grid-template-columns: 1fr; }
     .flow-jur { flex-direction: column; }
     .flow-jur .arrow { transform: rotate(90deg); margin: 6px 0; }
     .card-jur { width: 100%; }
     .eco-banner { flex-direction: column; align-items: flex-start; }
+    .bp-table-card { overflow-x: auto; }
+    .bp-table { min-width: 600px; }
 }
 @media(max-width: 640px) {
     .g4, .g3, .timeline-grid, .rivals-grid { grid-template-columns: 1fr; }
@@ -725,7 +845,7 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
 }
 @media(prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .card, .bar-fill, .reveal, .swot-card, .pest-card, .flip-inner { transition: none !important; transform: none !important; opacity: 1 !important; }
+    .bar-fill, .reveal, .swot-card, .pest-card, .flip-inner, .bp-bento-card { transition: none !important; transform: none !important; opacity: 1 !important; }
     .orb { animation: none; }
 }
 </style>
@@ -744,11 +864,171 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
-<!-- 02. Девять лет от стартапа до экосистемы (Flip-карточки) -->
+<!-- 02. Бизнес-план: Паспорт проекта -->
 <section class="glass-section">
     <div class="wrap">
         <div class="head reveal">
             <span class="sec-n">02</span>
+            <h2>Бизнес-план и архитектура сервиса</h2>
+            <p class="sub">Паспорт электронного бизнеса: от ценностного предложения до юрлица и ключевых метрик</p>
+        </div>
+
+        <!-- Таблица бизнес-плана (Сбер-стиль) -->
+        <div class="bp-table-card reveal delay-1">
+            <table class="bp-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">Параметр</th>
+                        <th style="width: 42%;">Содержание и спецификация</th>
+                        <th style="width: 30%;">Метрика / Экосистема</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="bp-param-name">
+                                <span class="bp-num-badge">1</span>
+                                Название проекта
+                            </div>
+                        </td>
+                        <td><b>«Купер»</b> (ранее — сервис «СберМаркет», юрлицо ООО «Инстамарт Сервис»)</td>
+                        <td><span class="bp-pill-tag">E-commerce Сбера</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bp-param-name">
+                                <span class="bp-num-badge">2</span>
+                                Проблема пользователя
+                            </div>
+                        </td>
+                        <td>Высокие временные затраты на поездки в гипермаркеты (2-3 часа), физическая тяжесть покупок, разрозненность заказов еды и медикаментов.</td>
+                        <td><span class="bp-pill-tag">Экономия ~12 ч / мес</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bp-param-name">
+                                <span class="bp-num-badge">3</span>
+                                Целевая аудитория (ЦА)
+                            </div>
+                        </td>
+                        <td>Семьи с детьми (плановые закупки на неделю), работающие горожане 22–45 лет (горячая еда и экспресс), B2B/B2G заказчики.</td>
+                        <td><span class="bp-pill-tag">Широкий средний чек</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bp-param-name">
+                                <span class="bp-num-badge">4</span>
+                                Основная модель
+                            </div>
+                        </td>
+                        <td><b>Platform / Marketplace + 3PL:</b> агрегация ассортимента полок ретейлеров и ресторанов с собственной сборкой и доставкой «последней мили».</td>
+                        <td><span class="bp-pill-tag">O2O (Online-to-Offline)</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bp-param-name">
+                                <span class="bp-num-badge">5</span>
+                                Дополнительная модель
+                            </div>
+                        </td>
+                        <td><b>Retail Media</b> (продажа рекламы FMCG-брендам), доставка посылок между физлицами (<b>C2C</b>) и снабжение соцучреждений (<b>B2G</b>).</td>
+                        <td><span class="bp-pill-tag">Маржинальность 70%+</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bp-param-name">
+                                <span class="bp-num-badge">6</span>
+                                УТП сервиса
+                            </div>
+                        </td>
+                        <td>Единая мультикорзина: заказ товаров из гипермаркетов по ценам полок + готовые блюда ресторанов + списание до 99% бонусами СберСпасибо.</td>
+                        <td><span class="bp-pill-tag">Синергия СберПрайм</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bp-param-name">
+                                <span class="bp-num-badge">7</span>
+                                Источник дохода
+                            </div>
+                        </td>
+                        <td>Комиссия с ретейлеров и ресторанов (take rate), сервисный сбор с покупателя, плата за доставку и доходы от рекламных форматов Retail Media.</td>
+                        <td><span class="bp-pill-tag">Мультипоточная модель</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bp-param-name">
+                                <span class="bp-num-badge">8</span>
+                                Основные участники
+                            </div>
+                        </td>
+                        <td>Пользователи, торговые сети («Ашан», Metro, «Лента»), рестораны-партнёры, пул сборщиков в ТЦ и самозанятые курьеры.</td>
+                        <td><span class="bp-pill-tag">Четырёхсторонний рынок</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bp-param-name">
+                                <span class="bp-num-badge">9</span>
+                                Главный KPI
+                            </div>
+                        </td>
+                        <td><b>GMV</b> (валовый оборот), <b>AOV</b> (средний чек), Unit-экономика заказа, <b>Frequency</b> (частота заказов в месяц) и <b>On-Time Delivery</b> (98%+).</td>
+                        <td><span class="bp-pill-tag">204,2 млрд ₽ GMV</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="bp-param-name">
+                                <span class="bp-num-badge">10</span>
+                                Адрес (физ. и юр.)
+                            </div>
+                        </td>
+                        <td><b>Юридический и физический адрес:</b> 115035, г. Москва, вн. тер. г. муниципальный округ Замоскворечье, ул. Садовническая, д. 9А, этаж 5, помещ. II, ком. 1.</td>
+                        <td><span class="bp-pill-tag">ООО «Инстамарт Сервис»</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Ключевые фокусы паспорта в карточках -->
+        <div class="bp-bento reveal delay-2">
+            <div class="bp-bento-card hl-bp">
+                <div>
+                    <div class="bp-bento-top">
+                        <span class="bp-pill-tag">Ценность</span>
+                        <b>№1 в плановом чеке</b>
+                    </div>
+                    <h3>Единый экран покупок</h3>
+                    <p>Пользователю больше не нужно открывать 4 разных приложения: продукты на неделю, обед из ресторана и аспирин из аптеки доставляются централизованно.</p>
+                </div>
+            </div>
+            <div class="bp-bento-card">
+                <div>
+                    <div class="bp-bento-top">
+                        <span class="bp-pill-tag">Финансы</span>
+                        <b>Монетизация</b>
+                    </div>
+                    <h3>Take Rate & Retail Media</h3>
+                    <p>Баланс между комиссионным доходом с торговых сетей и высокомаржинальной рекламой FMCG-брендов внутри каталога платформы.</p>
+                </div>
+            </div>
+            <div class="bp-bento-card">
+                <div>
+                    <div class="bp-bento-top">
+                        <span class="bp-pill-tag">Операции</span>
+                        <b>Качество</b>
+                    </div>
+                    <h3>Контроль сборки</h3>
+                    <p>Специализированный институт обученных сборщиков прямо в залах гипермаркетов — устранение риска доставки некондиционных и просроченных продуктов.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 03. Девять лет от стартапа до экосистемы (Flip-карточки) -->
+<section class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
+    <div class="wrap">
+        <div class="head reveal">
+            <span class="sec-n">03</span>
             <h2>Девять лет от стартапа до экосистемы</h2>
             <p class="sub">Нажмите на карточку любого года, чтобы узнать ключевые события и поворотные моменты</p>
         </div>
@@ -865,11 +1145,11 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
-<!-- 03. Юрисдикция (С графическими фигурами) -->
-<section class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
+<!-- 04. Юрисдикция (С графическими фигурами) -->
+<section class="glass-section">
     <div class="wrap">
         <div class="head reveal">
-            <span class="sec-n">03</span>
+            <span class="sec-n">04</span>
             <h2>Возвращение в российскую юрисдикцию</h2>
             <p class="sub">Организационно-правовая форма и процесс деофшоризации</p>
         </div>
@@ -924,11 +1204,11 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
-<!-- 04. Слайд: Платформа внутри экосистемы Сбера (Исправленный дизайн и структура) -->
-<section class="glass-section">
+<!-- 05. Платформа внутри экосистемы Сбера -->
+<section class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
     <div class="wrap">
         <div class="head reveal">
-            <span class="sec-n">04</span>
+            <span class="sec-n">05</span>
             <h2>Опорный контур экосистемы Сбера</h2>
             <p class="sub">Вместе с «Самокатом» (экспресс) и «МегаМаркетом» (non-food) «Купер» закрывает сегмент плановых покупок</p>
         </div>
@@ -946,7 +1226,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
         </div>
 
         <div class="grid g4">
-            <!-- 1. Руководство -->
             <div class="pillar-card hl-pillar reveal delay-1">
                 <div>
                     <div class="pillar-top">
@@ -964,7 +1243,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 </div>
             </div>
 
-            <!-- 2. Партнёры -->
             <div class="pillar-card reveal delay-2">
                 <div>
                     <div class="pillar-top">
@@ -982,7 +1260,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 </div>
             </div>
 
-            <!-- 3. Люди и курьеры -->
             <div class="pillar-card reveal delay-3">
                 <div>
                     <div class="pillar-top">
@@ -1000,7 +1277,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 </div>
             </div>
 
-            <!-- 4. Логистика -->
             <div class="pillar-card reveal delay-4">
                 <div>
                     <div class="pillar-top">
@@ -1021,17 +1297,16 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
-<!-- 05. Направления деятельности (Гармоничная сетка всех карточек) -->
-<section class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
+<!-- 06. Направления деятельности -->
+<section class="glass-section">
     <div class="wrap">
         <div class="head reveal">
-            <span class="sec-n">05</span>
+            <span class="sec-n">06</span>
             <h2>Не только продукты: мультисервисная витрина</h2>
             <p class="sub">Эволюция от нишевого сборщика еды до универсального гиперлокального маркетплейса</p>
         </div>
 
         <div class="directions-grid">
-            <!-- 1. Продукты (Главная большая карточка) -->
             <div class="dir-card dir-card-large hl-dir reveal delay-1">
                 <div>
                     <div class="dir-header">
@@ -1053,7 +1328,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 </div>
             </div>
 
-            <!-- 2. Готовая еда из ресторанов -->
             <div class="dir-card reveal delay-2">
                 <div>
                     <div class="dir-header">
@@ -1071,7 +1345,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 </div>
             </div>
 
-            <!-- 3. Non-food: аптеки, зоо, электроника -->
             <div class="dir-card reveal delay-3">
                 <div>
                     <div class="dir-header">
@@ -1089,7 +1362,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 </div>
             </div>
 
-            <!-- 4. C2C и B2G доставка -->
             <div class="dir-card reveal delay-1">
                 <div>
                     <div class="dir-header">
@@ -1107,7 +1379,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 </div>
             </div>
 
-            <!-- 5. Retail media -->
             <div class="dir-card reveal delay-2">
                 <div>
                     <div class="dir-header">
@@ -1128,38 +1399,33 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
-<!-- 06. Финансы (Интерактивный график с описанием при наведении) -->
-<section id="fin" class="glass-section">
+<!-- 07. Финансы -->
+<section id="fin" class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
     <div class="wrap">
         <div class="head reveal">
-            <span class="sec-n">06</span>
+            <span class="sec-n">07</span>
             <h2>Оборот вырос в 3,5 раза за три года</h2>
             <p class="sub">Финансовые показатели: GMV сервиса (млрд рублей). Наведите курсор на столбец любого года для подробного разбора</p>
         </div>
 
         <div class="chart-container-card reveal delay-1">
             <div class="chart-layout">
-                <!-- Столбчатый график -->
                 <div>
                     <div class="interactive-chart" role="img" aria-label="График GMV Купер с 2021 по 2024 год">
-                        <!-- 2021 -->
                         <div class="bar-col" tabindex="0" data-year="2021" data-gmv="58,6 млрд ₽" data-growth="База масштабирования" data-desc="Начало агрессивных экосистемных инвестиций Сбера (12 млрд ₽). Развёртывание экспресс-доставки и закрепление в статусе ключевого игрока доставки из гипермаркетов.">
                             <span class="bar-val">58,6</span>
                             <span class="bar-fill" style="--h:29%"></span>
                         </div>
-                        <!-- 2022 -->
                         <div class="bar-col" tabindex="0" data-year="2022" data-gmv="103,5 млрд ₽" data-growth="+77% г/г" data-desc="Прорывной рост в эпоху ухода зарубежных игроков. Преодоление психологической планки в 100 млрд рублей и выход на федеральное покрытие более 150 городов.">
                             <span class="bar-growth">+77%</span>
                             <span class="bar-val">103,5</span>
                             <span class="bar-fill" style="--h:51%"></span>
                         </div>
-                        <!-- 2023 -->
                         <div class="bar-col" tabindex="0" data-year="2023" data-gmv="165,6 млрд ₽" data-growth="+60% г/г" data-desc="Активное внедрение доставки готовой ресторанной еды, масштабирование дарксторов и оптимизация логистики 'последней мили'. Сервис прочно удерживает позицию №1 по объёму e-grocery.">
                             <span class="bar-growth">+60%</span>
                             <span class="bar-val">165,6</span>
                             <span class="bar-fill" style="--h:81%"></span>
                         </div>
-                        <!-- 2024 -->
                         <div class="bar-col selected" tabindex="0" data-year="2024" data-gmv="204,2 млрд ₽" data-growth="+23% г/г" data-desc="Год масштабного ребрендинга в 'Купер'. Платформа перешагнула отметку в 200 миллиардов GMV, расширив B2G, C2C и рекламную платформу для монетизации трафика.">
                             <span class="bar-growth">+23%</span>
                             <span class="bar-val">204,2</span>
@@ -1177,7 +1443,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                     </div>
                 </div>
 
-                <!-- Карточка-информер при наведении -->
                 <div class="chart-info-box" id="chartInfoBox">
                     <div>
                         <div class="info-box-header">
@@ -1199,17 +1464,16 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
-<!-- 07. Конкурентная среда (С логотипами и емким описанием) -->
+<!-- 08. Конкурентная среда -->
 <section class="dark">
     <div class="wrap">
         <div class="head reveal">
-            <span class="sec-n">07</span>
+            <span class="sec-n">08</span>
             <h2>Борьба за частоту контактов с клиентом</h2>
             <p class="sub">В российском фудтехе ключевая битва идёт не за ассортимент, а за сценарий «заказа на каждый день»</p>
         </div>
 
         <div class="rivals-grid">
-            <!-- Купер -->
             <div class="rival-card kuper-hero reveal delay-1">
                 <div>
                     <div class="rival-top">
@@ -1224,7 +1488,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 <span class="rival-tag">Широкий чек + Food</span>
             </div>
 
-            <!-- Яндекс Лавка -->
             <div class="rival-card reveal delay-2">
                 <div>
                     <div class="rival-top">
@@ -1239,7 +1502,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 <span class="rival-tag">Ultrafast (15 мин)</span>
             </div>
 
-            <!-- Яндекс Еда -->
             <div class="rival-card reveal delay-3">
                 <div>
                     <div class="rival-top">
@@ -1254,7 +1516,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 <span class="rival-tag">Рестораны №1</span>
             </div>
 
-            <!-- Самокат -->
             <div class="rival-card reveal delay-4">
                 <div>
                     <div class="rival-top">
@@ -1269,7 +1530,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 <span class="rival-tag">Частота заказов</span>
             </div>
 
-            <!-- ВкусВилл -->
             <div class="rival-card reveal delay-1">
                 <div>
                     <div class="rival-top">
@@ -1284,7 +1544,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 <span class="rival-tag">Здоровое питание / СТМ</span>
             </div>
 
-            <!-- Доставка X5 -->
             <div class="rival-card reveal delay-2">
                 <div>
                     <div class="rival-top">
@@ -1299,7 +1558,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 <span class="rival-tag">Инфраструктура офлайна</span>
             </div>
 
-            <!-- Ozon Fresh -->
             <div class="rival-card reveal delay-3">
                 <div>
                     <div class="rival-top">
@@ -1314,7 +1572,6 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
                 <span class="rival-tag">Складской E-com</span>
             </div>
 
-            <!-- Wildberries -->
             <div class="rival-card reveal delay-4">
                 <div>
                     <div class="rival-top">
@@ -1336,11 +1593,11 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
-<!-- 08. SWOT и PEST-анализ -->
+<!-- 09. SWOT и PEST-анализ -->
 <section class="glass-section">
     <div class="wrap">
         <div class="head reveal">
-            <span class="sec-n">08</span>
+            <span class="sec-n">09</span>
             <h2>Стратегический аудит: SWOT и PEST</h2>
             <p class="sub">Масштаб экосистемы Сбера против высокой стоимости логистики и жесткой рыночной конкуренции</p>
         </div>
@@ -1426,10 +1683,10 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
-<!-- 09. Социальная роль -->
+<!-- 10. Социальная роль -->
 <section class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
     <div class="wrap">
-        <div class="head reveal"><span class="sec-n">09</span><h2>Бизнес с социальной ролью</h2><p class="sub">Некоммерческая деятельность и социальные стандарты</p></div>
+        <div class="head reveal"><span class="sec-n">10</span><h2>Бизнес с социальной ролью</h2><p class="sub">Некоммерческая деятельность и социальные стандарты</p></div>
         <div class="list">
             <div class="reveal delay-1">B2G: товары первой необходимости для жителей домов-интернатов и социальных учреждений</div>
             <div class="reveal delay-2">Участие в ассоциациях цифровых платформ, формирующих цивилизованные стандарты рынка</div>
@@ -1438,11 +1695,11 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
-<!-- 10. Перспективы -->
+<!-- 11. Перспективы -->
 <section class="dark">
     <div class="orb" aria-hidden="true" style="width: min(40vw, 450px); left: -10vw; top: 70%;"></div>
     <div class="wrap">
-        <div class="head reveal"><span class="sec-n">10</span><h2>Платформа ежедневных покупок</h2><p class="sub">Перспективы развития</p></div>
+        <div class="head reveal"><span class="sec-n">11</span><h2>Платформа ежедневных покупок</h2><p class="sub">Перспективы развития</p></div>
         <div class="list" style="max-width: 700px;">
             <div class="reveal delay-1">Масштабирование B2G и C2C-доставки</div>
             <div class="reveal delay-2">Retail media как главное высокомаржинальное направление</div>
@@ -1463,7 +1720,7 @@ window.addEventListener('scroll', () => {
     bar.style.width = (maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0) + '%';
 }, { passive: true });
 
-// Обработка переворачивания 3D Flip-карточек таймлайна (Слайд 02)
+// Обработка переворачивания 3D Flip-карточек таймлайна (Слайд 03)
 document.querySelectorAll('.flip-card').forEach(card => {
     card.addEventListener('click', () => {
         card.classList.toggle('flipped');
@@ -1477,7 +1734,7 @@ document.querySelectorAll('.flip-card').forEach(card => {
     });
 });
 
-// Интерактив для Слайда 06 (Финансовый график)
+// Интерактив для Слайда 07 (Финансовый график)
 const barCols = document.querySelectorAll('.bar-col');
 const infoYear = document.getElementById('infoYear');
 const infoGrowth = document.getElementById('infoGrowth');
