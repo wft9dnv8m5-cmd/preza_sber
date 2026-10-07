@@ -219,6 +219,143 @@ h2 { font-size: clamp(2rem, 4.8vw, 3.8rem); line-height: 1.1; font-weight: 800; 
 .chip.me { background: var(--sber-green); border: none; color: #fff; font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 800; box-shadow: 0 12px 30px rgba(33, 160, 56, 0.4); }
 .chip.me:hover { transform: translateY(-4px) scale(1.05); }
 
+/* Стили для секции 08: SWOT и PEST */
+.analysis-block {
+    margin-bottom: 48px;
+}
+.analysis-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--mut);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.analysis-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(33, 160, 56, 0.2);
+}
+
+.swot-card {
+    position: relative;
+    padding: 28px 24px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.swot-card:hover {
+    transform: translateY(-6px);
+}
+
+.swot-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+.swot-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+.swot-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.swot-s { --swot-clr: #148f2b; }
+.swot-s:hover { box-shadow: 0 16px 36px rgba(20, 143, 43, 0.16); border-color: rgba(20, 143, 43, 0.3); }
+.swot-s .swot-badge { background: rgba(20, 143, 43, 0.12); color: var(--swot-clr); }
+.swot-s .swot-name { color: var(--swot-clr); }
+
+.swot-w { --swot-clr: #d97706; }
+.swot-w:hover { box-shadow: 0 16px 36px rgba(217, 119, 6, 0.16); border-color: rgba(217, 119, 6, 0.3); }
+.swot-w .swot-badge { background: rgba(217, 119, 6, 0.12); color: var(--swot-clr); }
+.swot-w .swot-name { color: var(--swot-clr); }
+
+.swot-o { --swot-clr: #0284c7; }
+.swot-o:hover { box-shadow: 0 16px 36px rgba(2, 132, 199, 0.16); border-color: rgba(2, 132, 199, 0.3); }
+.swot-o .swot-badge { background: rgba(2, 132, 199, 0.12); color: var(--swot-clr); }
+.swot-o .swot-name { color: var(--swot-clr); }
+
+.swot-t { --swot-clr: #e11d48; }
+.swot-t:hover { box-shadow: 0 16px 36px rgba(225, 29, 72, 0.16); border-color: rgba(225, 29, 72, 0.3); }
+.swot-t .swot-badge { background: rgba(225, 29, 72, 0.12); color: var(--swot-clr); }
+.swot-t .swot-name { color: var(--swot-clr); }
+
+.swot-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: #374151;
+    line-height: 1.45;
+}
+.swot-list li {
+    position: relative;
+    padding-left: 18px;
+}
+.swot-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--swot-clr);
+}
+
+.pest-card {
+    padding: 20px 22px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+.pest-card:hover {
+    background: rgba(255, 255, 255, 0.85);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(33, 160, 56, 0.08);
+}
+.pest-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sber-green);
+    margin-bottom: 6px;
+    display: block;
+}
+.pest-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+}
+.pest-card p {
+    font-size: 0.92rem;
+    color: var(--mut);
+    line-height: 1.45;
+}
+
 /* List */
 .list { display: grid; gap: 16px; margin-top: 24px; }
 .list div {
@@ -263,7 +400,7 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
 }
 @media(prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .card, .col i, .reveal { transition: none !important; transform: none !important; opacity: 1 !important; }
+    .card, .col i, .reveal, .swot-card, .pest-card { transition: none !important; transform: none !important; opacity: 1 !important; }
     .orb { animation: none; }
 }
 </style>
@@ -271,6 +408,7 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
 <body>
 <div class="bar-top" id="bar" aria-hidden="true"></div>
 
+<!-- 01. Hero -->
 <section class="dark hero">
     <div class="orb" aria-hidden="true"></div>
     <div class="wrap reveal">
@@ -281,6 +419,7 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
+<!-- 02. История -->
 <section class="glass-section">
     <div class="wrap">
         <div class="head reveal"><span class="sec-n">02</span><h2>Девять лет от стартапа до экосистемы</h2><p class="sub">История создания компании</p></div>
@@ -293,6 +432,7 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
+<!-- 03. Юрисдикция -->
 <section class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
     <div class="wrap">
         <div class="head reveal"><span class="sec-n">03</span><h2>Возвращение в российскую юрисдикцию</h2><p class="sub">Организационно-правовая форма</p></div>
@@ -304,6 +444,7 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
+<!-- 04. Экосистема -->
 <section class="glass-section">
     <div class="wrap">
         <div class="head reveal"><span class="sec-n">04</span><h2>Платформа внутри экосистемы Сбера</h2><p class="sub">Купер входит в e-commerce направление вместе с «Самокатом» и «МегаМаркетом»</p></div>
@@ -316,6 +457,7 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
+<!-- 05. Направления деятельности -->
 <section class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
     <div class="wrap">
         <div class="head reveal"><span class="sec-n">05</span><h2>Не только продукты</h2><p class="sub">Ключевые направления деятельности</p></div>
@@ -329,6 +471,7 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
+<!-- 06. Финансы -->
 <section id="fin" class="glass-section">
     <div class="wrap">
         <div class="head reveal"><span class="sec-n">06</span><h2>Оборот вырос в 3,5 раза за три года</h2><p class="sub">Финансовые показатели: GMV по годам, млрд рублей</p></div>
@@ -345,6 +488,7 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
+<!-- 07. Конкуренты -->
 <section class="dark">
     <div class="wrap">
         <div class="head reveal"><span class="sec-n">07</span><h2>Борьба за частоту покупок</h2><p class="sub">Конкурентная среда</p></div>
@@ -362,26 +506,97 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
+<!-- 08. SWOT и PEST-анализ -->
 <section class="glass-section">
     <div class="wrap">
-        <div class="head reveal"><span class="sec-n">08</span><h2>SWOT и PEST-анализ</h2><p class="sub">Сильная позиция за счёт масштаба, но зависимость от экономики доставки</p></div>
+        <div class="head reveal">
+            <span class="sec-n">08</span>
+            <h2>Стратегический аудит: SWOT и PEST</h2>
+            <p class="sub">Масштаб экосистемы Сбера против высокой стоимости логистики и рыночной конкуренции</p>
+        </div>
         
-        <div class="grid g4">
-            <div class="card reveal delay-1"><h3 style="color: var(--sber-green)">Сильные стороны</h3><p>Поддержка Сбера, партнёрская сеть</p></div>
-            <div class="card reveal delay-2"><h3 style="color: #d97706">Слабые стороны</h3><p>Издержки ребрендинга и логистики</p></div>
-            <div class="card reveal delay-3"><h3 style="color: #0284c7">Возможности</h3><p>B2G, C2C, retail media</p></div>
-            <div class="card reveal delay-4"><h3 style="color: #dc2626">Угрозы</h3><p>Конкуренты, макроэкономика</p></div>
+        <div class="analysis-block">
+            <div class="analysis-title reveal">SWOT-анализ</div>
+            <div class="grid g4">
+                <div class="swot-card swot-s reveal delay-1">
+                    <div class="swot-header">
+                        <span class="swot-name">Сильные стороны</span>
+                        <div class="swot-badge">S</div>
+                    </div>
+                    <ul class="swot-list">
+                        <li>Финансовая и технологическая поддержка экосистемы Сбера</li>
+                        <li>Широкая сеть федеральных ретейлеров (Metro, Ашан, Лента)</li>
+                        <li>Развитая инфраструктура быстрой сборки и курьерской базы</li>
+                    </ul>
+                </div>
+
+                <div class="swot-card swot-w reveal delay-2">
+                    <div class="swot-header">
+                        <span class="swot-name">Слабые стороны</span>
+                        <div class="swot-badge">W</div>
+                    </div>
+                    <ul class="swot-list">
+                        <li>Высокие расходы на ребрендинг и восстановление узнаваемости</li>
+                        <li>Зависимость unit-экономики от стоимости «последней мили»</li>
+                        <li>Операционные риски при аутсорсинге сборщиков и курьеров</li>
+                    </ul>
+                </div>
+
+                <div class="swot-card swot-o reveal delay-3">
+                    <div class="swot-header">
+                        <span class="swot-name">Возможности</span>
+                        <div class="swot-badge">O</div>
+                    </div>
+                    <ul class="swot-list">
+                        <li>Развитие высокомаржинального сегмента Retail Media</li>
+                        <li>Интеграция в B2G-поставки и развитие сервиса C2C-доставки</li>
+                        <li>Глубокая синергия с подпиской СберПрайм и бонусами «Спасибо»</li>
+                    </ul>
+                </div>
+
+                <div class="swot-card swot-t reveal delay-4">
+                    <div class="swot-header">
+                        <span class="swot-name">Угрозы</span>
+                        <div class="swot-badge">T</div>
+                    </div>
+                    <ul class="swot-list">
+                        <li>Ценовое давление со стороны Яндекс Лавки, Ozon и X5 Group</li>
+                        <li>Дефицит линейного персонала на рынке труда и рост ФОТ</li>
+                        <li>Ужесточение платформенного и трудового законодательства</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <div class="grid g4" style="margin-top: 24px;">
-            <div class="card reveal delay-1" style="padding: 24px;"><h3 style="font-size: 1.1rem">Политика</h3><p style="font-size: 0.95rem">Регулирование e-commerce</p></div>
-            <div class="card reveal delay-2" style="padding: 24px;"><h3 style="font-size: 1.1rem">Экономика</h3><p style="font-size: 0.95rem">Инфляция и цены</p></div>
-            <div class="card reveal delay-3" style="padding: 24px;"><h3 style="font-size: 1.1rem">Общество</h3><p style="font-size: 0.95rem">Привычка к онлайн-доставке</p></div>
-            <div class="card reveal delay-4" style="padding: 24px;"><h3 style="font-size: 1.1rem">Технологии</h3><p style="font-size: 0.95rem">Дарксторы, ИИ-алгоритмы</p></div>
+        <div class="analysis-block" style="margin-bottom: 0;">
+            <div class="analysis-title reveal">PEST-факторы внешней среды</div>
+            <div class="grid g4">
+                <div class="pest-card reveal delay-1">
+                    <span class="pest-tag">Political</span>
+                    <h3>Политика</h3>
+                    <p>Антимонопольное регулирование маркетплейсов, тренд на деофшоризацию и регулирование статуса самозанятых курьеров.</p>
+                </div>
+                <div class="pest-card reveal delay-2">
+                    <span class="pest-tag">Economic</span>
+                    <h3>Экономика</h3>
+                    <p>Продовольственная инфляция, динамика реальных доходов населения и удорожание привлечения рабочего персонала.</p>
+                </div>
+                <div class="pest-card reveal delay-3">
+                    <span class="pest-tag">Social</span>
+                    <h3>Общество</h3>
+                    <p>Закрепление паттерна покупок «в один клик», рост требований к скорости (ультрафаст) и экологичности упаковки.</p>
+                </div>
+                <div class="pest-card reveal delay-4">
+                    <span class="pest-tag">Technological</span>
+                    <h3>Технологии</h3>
+                    <p>ИИ-маршрутизация логистики, предиктивная аналитика спроса на дарксторах и автоматизация распределения заказов.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
+<!-- 09. Социальная роль -->
 <section class="glass-section" style="background: rgba(33, 160, 56, 0.03);">
     <div class="wrap">
         <div class="head reveal"><span class="sec-n">09</span><h2>Бизнес с социальной ролью</h2><p class="sub">Некоммерческая деятельность</p></div>
@@ -393,6 +608,7 @@ footer { padding: 32px 20px; background: #06120a; color: #648a73; text-align: ce
     </div>
 </section>
 
+<!-- 10. Перспективы -->
 <section class="dark">
     <div class="orb" aria-hidden="true" style="width: min(40vw, 450px); left: -10vw; top: 70%;"></div>
     <div class="wrap">
@@ -417,7 +633,7 @@ window.addEventListener('scroll', () => {
     bar.style.width = (maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0) + '%';
 }, { passive: true });
 
-// Адаптер: Intersection Observer для красивых анимаций Glassmorphism и секций
+// Адаптер: Intersection Observer для анимаций появления элементов
 const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -434,13 +650,11 @@ const observer = new IntersectionObserver((entries, obs) => {
                 entry.target.classList.add('active-chart');
             }
             
-            // Отписываемся после срабатывания анимации (чтобы не прыгало туда-сюда)
             obs.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Наблюдаем за всеми элементами с классом reveal
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal, #fin').forEach(el => {
         observer.observe(el);
